@@ -67,11 +67,10 @@ public class Calculate {
 	/* converts binominal(form (ax+b)(cx+d)) into a quadratic form (ax^2 +bx+c)) 
 	 * accepts four ints and a string, returns a string
 	 */
-	public static String foil(int a, int b, int c, int d, char x) {
+	public static String foil(int a, int b, int c, int d, String variable) {
 		int numberA = a * c;
 		int numberB = (a*d) + (b*c);
 		int numberC = d*b;
-		String variable = "" + x;
 		return (numberA+variable + '+' + numberB+variable + '+' + numberC);
 	}
 	
