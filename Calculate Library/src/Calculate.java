@@ -1,3 +1,8 @@
+/*Caleb Ng
+ * 8/29/19
+ * 4th Period
+ * Does calculations from Access Calculate
+ */
 public class Calculate {
 	/* returns the square of value passed
 	 * Accepts and return int
