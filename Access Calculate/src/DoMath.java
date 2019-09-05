@@ -15,6 +15,6 @@ public class DoMath {
 		System.out.println(Calculate.discriminant(1, 6, 9));
 		System.out.println(Calculate.toImproperFrac(2, 2, 3));
 		System.out.println(Calculate.toMixedNum(8, 3));
-		System.out.println(Calculate.foil(1, 3, 1, 3, 'x'));
+		System.out.println(Calculate.foil(1, 3, 1, 3, 'n'));
 	}
 }

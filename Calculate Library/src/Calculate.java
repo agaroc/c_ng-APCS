@@ -67,7 +67,7 @@ public class Calculate {
 		int numberB = (a*d) + (b*c);
 		int numberC = d*b;
 		String variable = "" + x;
-		return (numberA+variable + numberB+variable + numberC);
+		return (numberA+variable + '+' + numberB+variable + '+' + numberC);
 	}
 	
 }
