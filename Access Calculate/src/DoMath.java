@@ -16,5 +16,10 @@ public class DoMath {
 		System.out.println(Calculate.toImproperFrac(2, 2, 3));
 		System.out.println(Calculate.toMixedNum(8, 3));
 		System.out.println(Calculate.foil(1, 3, 1, 3, "x"));
+		System.out.println(Calculate.isDivisibleBy(4, 2));
+		System.out.println(Calculate.absValue(5.0));
+		System.out.println(Calculate.max(3, 7));
+		System.out.println(Calculate.max(3, 11, 7));
+		System.out.println(Calculate.min(11, 3));
 	}
 }

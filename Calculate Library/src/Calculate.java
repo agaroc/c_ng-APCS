@@ -73,5 +73,59 @@ public class Calculate {
 		int numberC = d*b;
 		return (numberA+variable + '+' + numberB+variable + '+' + numberC);
 	}
-	
+	/* takes two numbers and sees if it is divisble if it is return true otherwise false
+	 * Accepts two intgers and returns boolean
+	 */
+	public static boolean isDivisibleBy(int number1, int number2) {
+		if(number1%number2 == 0 || number2%number1 == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	/* takes one number and does the absolute value of the number
+	 * takes one double and reutrns a double
+	 */
+	public static double absValue(double number) {
+		if(number <=0 ) {
+			return number *= -1;
+		}else {
+			return number;
+		}
+	}
+	/* takes two numbers and determines the larger value of the two numbers
+	 * takes two doubles and returns a double
+	 */
+	public static double max(double number1, double number2) {
+		if(number1 >= number2) {
+			return number1;
+		}else {
+			return number2;
+		}
+	}
+	/* takes three numbers and determines the larger value of the three numbers
+	 * take three doubles and returns a double
+	 */
+	public static double max(double number1, double number2, double number3) {
+		if(number1 >= number2 && number1 >=3){
+			return number1;
+		}else if(number2 >= number1 && number2 >= number3) {
+			return number2;
+		}else {
+			return number3;
+		}	
+	}
+	/* take two numbers and determines the lowest value of the two number
+	 * take two intergers and returns an int
+	 */
+	public static int min(int number1, int number2) {
+		if(number1 <= number2) {
+			return number1;
+		}else {
+			return number2;
+		}
+	}
+	public static double round2(double number) {
+		
+	}
 }
