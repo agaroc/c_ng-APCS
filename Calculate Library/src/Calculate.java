@@ -125,7 +125,51 @@ public class Calculate {
 			return number2;
 		}
 	}
+	/* takes one double and rounds it to the hundereth place
+	 * Accepts one double and returns a double
+	 */
 	public static double round2(double number) {
-		
+		double lastDigit = (number*1000)%10;
+		double result = number*100;
+		if(lastDigit>=5) {
+			result+=0.5;
+		}
+		result = (int)result;
+		return result/100;
+	}
+	/*raises a positive interger power.
+	 * Accepts a double and an integer and reutrns double
+	 */
+	public static double exponent(double number, int powerNumber) {
+		double result = number;
+		for(int i = 1; i < powerNumber; i++) {
+			result *= number;
+		}
+		return result;
+	}
+	/*returns factorial of value passed
+	 * method accepts integer and returns a integer
+	 */
+	public static int factorial(int number) {
+		int startNumber = 1;
+		for (int i = 1; i <= number; i++) {
+			startNumber *= i;
+		}
+		return startNumber;
+	}
+	/* find if the number is prime or not
+	 * accepts integer and returns boolean
+	 */
+	public static boolean isPrime(int number) {
+		int times = number;
+		boolean flag = true;
+		for(int i = 1;i <= times/2; i++) {
+			if(Calculate.isDivisibleBy(number, i) && i != number && i != 1) {
+				flag = false;
+			}else {
+				flag = true;
+			}
+		}
+		return flag;
 	}
 }
