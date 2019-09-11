@@ -158,6 +158,7 @@ public class Calculate {
 		return startNumber;
 	}
 	/* find if the number is prime or not
+	 * njwnd
 	 * accepts integer and returns boolean
 	 */
 	public static boolean isPrime(int number) {
