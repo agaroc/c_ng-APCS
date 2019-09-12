@@ -173,4 +173,24 @@ public class Calculate {
 		}
 		return flag;
 	}
+	/* finds the greatest common factor of two integers
+	 * accepts two integers and returns one integer
+	 */
+	public static int gcf(int number1, int number2) {
+		int largestNum = 0;
+		int largestFactor = 0;
+		if(number1 > number2) {
+			largestNum = number1;
+		}else {
+			largestNum = number2;
+		}
+		for(int i = 1;i < largestNum; i++) {
+			if(Calculate.isDivisibleBy(number1, i) &&  Calculate.isDivisibleBy(i, number2)) {
+				if(largestFactor < i) {
+					largestFactor = i;
+				}
+			}
+		}
+		return largestFactor;
+	}
 }
