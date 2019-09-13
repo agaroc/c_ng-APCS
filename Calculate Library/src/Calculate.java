@@ -142,8 +142,12 @@ public class Calculate {
 	 */
 	public static double exponent(double number, int powerNumber) {
 		double result = number;
-		for(int i = 1; i < powerNumber; i++) {
-			result *= number;
+		if(powerNumber == 0) {
+			result = 1;
+		}else {
+			for(int i = 1; i < powerNumber; i++) {
+				result *= number;
+			}
 		}
 		return result;
 	}
@@ -164,8 +168,11 @@ public class Calculate {
 	public static boolean isPrime(int number) {
 		int times = number;
 		boolean flag = true;
+		if(number == 0) {
+			return false;
+		}
 		for(int i = 1;i <= times/2; i++) {
-			if(Calculate.isDivisibleBy(number, i) && i != number && i != 1) {
+			if(isDivisibleBy(number, i) && i != number && i != 1) {
 				flag = false;
 			}else {
 				flag = true;
@@ -185,12 +192,21 @@ public class Calculate {
 			largestNum = number2;
 		}
 		for(int i = 1;i < largestNum; i++) {
-			if(Calculate.isDivisibleBy(number1, i) &&  Calculate.isDivisibleBy(i, number2)) {
+			if(isDivisibleBy(number1, i) &&  isDivisibleBy(i, number2)) {
 				if(largestFactor < i) {
 					largestFactor = i;
 				}
 			}
 		}
 		return largestFactor;
+	}
+	public static double sqrt(double number) {
+		int guess = 1;
+		double result = 1;
+		while(absValue(result*result - number) < 0.005 != true) {
+			result = 0.5*((number/ guess) + guess);
+			guess++;
+		}
+		return round2(result);
 	}
 }
