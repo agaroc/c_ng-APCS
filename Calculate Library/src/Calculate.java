@@ -142,22 +142,30 @@ public class Calculate {
 	 */
 	public static double exponent(double number, int powerNumber) {
 		double result = number;
-		if(powerNumber == 0) {
-			result = 1;
+		if(powerNumber < 0) {
+			
 		}else {
-			for(int i = 1; i < powerNumber; i++) {
-				result *= number;
+			if(powerNumber == 0) {
+				result = 1;
+			}else {
+				for(int i = 1; i < powerNumber; i++) {
+					result *= number;
+				}
 			}
 		}
-		return result;
+			return result;
 	}
 	/*returns factorial of value passed
 	 * method accepts integer and returns a integer
 	 */
 	public static int factorial(int number) {
 		int startNumber = 1;
-		for (int i = 1; i <= number; i++) {
-			startNumber *= i;
+		if(number >= 0) {
+			for (int i = 1; i <= number; i++) {
+				startNumber *= i;
+			}
+		}else {
+			System.out.println("Can't do factorial of a nergative number");
 		}
 		return startNumber;
 	}
@@ -186,26 +194,39 @@ public class Calculate {
 	public static int gcf(int number1, int number2) {
 		int largestNum = 0;
 		int largestFactor = 0;
-		if(number1 > number2) {
-			largestNum = number1;
-		}else {
-			largestNum = number2;
-		}
-		for(int i = 1;i < largestNum; i++) {
-			if(isDivisibleBy(number1, i) &&  isDivisibleBy(i, number2)) {
-				if(largestFactor < i) {
-					largestFactor = i;
-				}
+		if(number1 == 0 || number2 == 0) {
+			System.out.println("Can't do gcf of 0");
+			largestFactor = 0;
+  	    }else {
+  	    	if(number1 > number2) {
+				largestNum = number1;
+			}else {
+				largestNum = number2;
 			}
-		}
+			for(int i = 1;i < largestNum; i++) {
+				if(isDivisibleBy(number1, i) &&  isDivisibleBy(i, number2)) {
+					if(largestFactor < i) {
+						largestFactor = i;
+					}
+				}
+		    }
+  	    }
 		return largestFactor;
 	}
+/* returns the square root of a given positive number and rounds to the 2 decimal
+ * Accepts a double and returns a double
+ */
 	public static double sqrt(double number) {
 		int guess = 1;
-		double result = 1;
-		while(absValue(result*result - number) < 0.005 != true) {
-			result = 0.5*((number/ guess) + guess);
-			guess++;
+		double result = 0;
+		
+		if(number >= 0) {
+			while(absValue(result*result - number) < 0.005 != true) {
+				result = 0.5*((number/ guess) + guess);
+				guess++;
+			}
+		}else {
+			System.out.println("cannot sqrt number 0 or lower");
 		}
 		return round2(result);
 	}
