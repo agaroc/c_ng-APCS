@@ -47,7 +47,7 @@ public class Calculate {
 	 * Accepts 3 doubles and returns one double
 	 */
 	public static double discriminant(double a, double b, double c) {
-		return (b*b)-(4*a*c);
+		return -(b*b)-(4*a*c);
 	/*converts mixed number into a improper fraction
 	 * accepts 3 ints(from the order of whole number, numerator, and denominator) and returns a string
 	 */
@@ -143,7 +143,9 @@ public class Calculate {
 	public static double exponent(double number, int powerNumber) {
 		double result = number;
 		if(powerNumber < 0) {
-			
+			for(int i = 1; i > (powerNumber); i--) {
+				result /= number;
+			}
 		}else {
 			if(powerNumber == 0) {
 				result = 1;
@@ -153,7 +155,7 @@ public class Calculate {
 				}
 			}
 		}
-			return result;
+		return result;
 	}
 	/*returns factorial of value passed
 	 * method accepts integer and returns a integer
@@ -165,7 +167,7 @@ public class Calculate {
 				startNumber *= i;
 			}
 		}else {
-			System.out.println("Can't do factorial of a nergative number");
+			throw new IllegalArgumentException("Can't do factorial of a nergative number");
 		}
 		return startNumber;
 	}
@@ -194,9 +196,8 @@ public class Calculate {
 	public static int gcf(int number1, int number2) {
 		int largestNum = 0;
 		int largestFactor = 0;
-		if(number1 == 0 || number2 == 0) {
-			System.out.println("Can't do gcf of 0");
-			largestFactor = 0;
+		if(number1 == 0 || number2 == 0) {	
+			throw new IllegalArgumentException("Can't do gcf of 0");
   	    }else {
   	    	if(number1 > number2) {
 				largestNum = number1;
@@ -226,8 +227,23 @@ public class Calculate {
 				guess++;
 			}
 		}else {
-			System.out.println("cannot sqrt number 0 or lower");
+			throw new IllegalArgumentException("cannot sqrt number 0 or lower");
 		}
 		return round2(result);
+	}
+	/*Does the quadratic equaiton of the coeff of a quadratic in standard form. Helps to find roots
+	 * Accepts 3 integers returns string
+	 */
+	public static String quadForm(int a, int b, int c) {
+		if(discriminant(a, b, c) < 0) {
+			return "No real roots";
+		}else if(discriminant(a,b,c) == 0) {
+			double singleRoot = (-b+(sqrt(discriminant(a,b,c))))/(2*a);
+			return ("SingleRoot: "+singleRoot);
+		}else {
+			double doubleRoot1 = (-b+(sqrt(discriminant(a,b,c))))/(2*a);
+			double doubleRoot2 = (-b-(sqrt(discriminant(a,b,c))))/(2*a);
+			return("Roots are: " + doubleRoot1 + "and" + doubleRoot2);
+		}
 	}
 }
