@@ -43,7 +43,7 @@ public class Calculate {
 		double pi = 3.14159;
 		return degree*(pi/180);
 	}
-	/*returns values of the discriminant of the coefficents a,b,c of a quadradtic formula
+	/*returns values of the discriminant of the coefficents a,b,c of a quadratic formula
 	 * Accepts 3 doubles and returns one double
 	 */
 	public static double discriminant(double a, double b, double c) {
@@ -57,7 +57,7 @@ public class Calculate {
 		return (newNumerator + "/" + denominator);
 	}
 	/*converts improper fraction into mixed number 
-	 * accepts two intergers(from the order of numerator and denominator and returns a string
+	 * accepts two integers(from the order of numerator and denominator and returns a string
 	 */
 	public static String toMixedNum(int numerator, int denominator) {
 		int whole_number = numerator/ denominator;
@@ -74,7 +74,7 @@ public class Calculate {
 		return (numberA+variable + '+' + numberB+variable + '+' + numberC);
 	}
 	/* takes two numbers and sees if it is divisble if it is return true otherwise false
-	 * Accepts two intgers and returns boolean
+	 * Accepts two integers and returns boolean
 	 */
 	public static boolean isDivisibleBy(int number1, int number2) {
 		if(number1 == 0 || number2 ==0) {
@@ -88,7 +88,7 @@ public class Calculate {
 		}
 	}
 	/* takes one number and does the absolute value of the number
-	 * takes one double and reutrns a double
+	 * takes one double and returns a double
 	 */
 	public static double absValue(double number) {
 		if(number <=0 ) {
@@ -120,7 +120,7 @@ public class Calculate {
 		}	
 	}
 	/* take two numbers and determines the lowest value of the two number
-	 * take two intergers and returns an int
+	 * take two integers and returns an int
 	 */
 	public static int min(int number1, int number2) {
 		if(number1 <= number2) {
@@ -129,14 +129,20 @@ public class Calculate {
 			return number2;
 		}
 	}
-	/* takes one double and rounds it to the hundereth place
+	/* takes one double and rounds it to the hundreth place
 	 * Accepts one double and returns a double
 	 */
 	public static double round2(double number) {
 		double lastDigit = (number*1000)%10;
 		double result = number*100;
-		if(lastDigit>=5) {
-			result+=0.5;
+		if(number <= 0) {
+			if(lastDigit <= 5) {
+				result -=0.5;
+			}
+		}else {
+			if(lastDigit >= 5) {
+				result+=0.5;
+			}
 		}
 		result = (int)result;
 		return result/100;
@@ -176,7 +182,6 @@ public class Calculate {
 		return result;
 	}
 	/* find if the number is prime or not
-	 * njwnd
 	 * accepts integer and returns boolean
 	 */
 	public static boolean isPrime(int number) {
