@@ -47,7 +47,7 @@ public class Calculate {
 	 * Accepts 3 doubles and returns one double
 	 */
 	public static double discriminant(double a, double b, double c) {
-		return -(b*b)-(4*a*c);
+		return  (b*b)-(4*a*c);
 	/*converts mixed number into a improper fraction
 	 * accepts 3 ints(from the order of whole number, numerator, and denominator) and returns a string
 	 */
@@ -77,10 +77,14 @@ public class Calculate {
 	 * Accepts two intgers and returns boolean
 	 */
 	public static boolean isDivisibleBy(int number1, int number2) {
-		if(number1%number2 == 0 || number2%number1 == 0) {
-			return true;
+		if(number1 == 0 || number2 ==0) {
+			throw new IllegalArgumentException("Can't divide by 0");
 		}else {
-			return false;
+			if(number1%number2 == 0 || number2%number1 == 0) {
+				return true;
+			}else {
+				return false;
+			}
 		}
 	}
 	/* takes one number and does the absolute value of the number
@@ -161,15 +165,15 @@ public class Calculate {
 	 * method accepts integer and returns a integer
 	 */
 	public static int factorial(int number) {
-		int startNumber = 1;
+		int result = 1;
 		if(number >= 0) {
 			for (int i = 1; i <= number; i++) {
-				startNumber *= i;
+				result *= i;
 			}
 		}else {
 			throw new IllegalArgumentException("Can't do factorial of a nergative number");
 		}
-		return startNumber;
+		return result;
 	}
 	/* find if the number is prime or not
 	 * njwnd
@@ -194,17 +198,13 @@ public class Calculate {
 	 * accepts two integers and returns one integer
 	 */
 	public static int gcf(int number1, int number2) {
-		int largestNum = 0;
+		int smallestNum = 0;
 		int largestFactor = 0;
 		if(number1 == 0 || number2 == 0) {	
 			throw new IllegalArgumentException("Can't do gcf of 0");
   	    }else {
-  	    	if(number1 > number2) {
-				largestNum = number1;
-			}else {
-				largestNum = number2;
-			}
-			for(int i = 1;i < largestNum; i++) {
+  	    	smallestNum = min(number1, number2);
+			for(int i = 1;i <= smallestNum; i++) {
 				if(isDivisibleBy(number1, i) &&  isDivisibleBy(i, number2)) {
 					if(largestFactor < i) {
 						largestFactor = i;
@@ -231,7 +231,7 @@ public class Calculate {
 		}
 		return round2(result);
 	}
-	/*Does the quadratic equaiton of the coeff of a quadratic in standard form. Helps to find roots
+	/*Does the quadratic equation of the coeff of a quadratic in standard form. Helps to find roots
 	 * Accepts 3 integers returns string
 	 */
 	public static String quadForm(int a, int b, int c) {

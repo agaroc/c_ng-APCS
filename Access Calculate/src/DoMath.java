@@ -12,7 +12,7 @@ public class DoMath {
 		System.out.println(Calculate.average(7, 7, 7));
 		System.out.println(Calculate.toDegrees(3.14));
 		System.out.println(Calculate.toRadians(180.0));
-		System.out.println(Calculate.discriminant(1, 6, 9));
+		System.out.println("HIII " + Calculate.discriminant(1, 6, 9));
 		System.out.println(Calculate.toImproperFrac(2, 2, 3));
 		System.out.println(Calculate.toMixedNum(8, 3));
 		System.out.println(Calculate.foil(1, 3, 1, 3, "x"));
@@ -31,6 +31,6 @@ public class DoMath {
 		//System.out.println(Calculate.gcf(5, 0));
 		//System.out.println(Calculate.sqrt(-16));
 		System.out.println(Calculate.exponent(4, -2));
-		System.out.println(Calculate.quadForm(1, 6, 9));
+		System.out.println(Calculate.quadForm(2, 3, 1));
 	}
 }
