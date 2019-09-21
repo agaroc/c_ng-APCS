@@ -133,19 +133,15 @@ public class Calculate {
 	 * Accepts one double and returns a double
 	 */
 	public static double round2(double number) {
-		double lastDigit = (number*1000)%10;
-		double result = number*100;
-		if(number <= 0) {
-			if(lastDigit <= 5) {
-				result -=0.5;
-			}
+		if(number >= 0) {
+			number = (number*100)+0.5;
+			number = (int)number;
+			return number/100;
 		}else {
-			if(lastDigit >= 5) {
-				result+=0.5;
-			}
+			number = (number +100) - 0.5;
+			number = (int) number;
+			return number/100;
 		}
-		result = (int)result;
-		return result/100;
 	}
 	/*raises a positive interger power.
 	 * Accepts a double and an integer and reutrns double
@@ -223,32 +219,27 @@ public class Calculate {
  * Accepts a double and returns a double
  */
 	public static double sqrt(double number) {
-		int guess = 1;
-		double result = 0;
-		
-		if(number >= 0) {
-			while(absValue(result*result - number) < 0.005 != true) {
-				result = 0.5*((number/ guess) + guess);
-				guess++;
-			}
-		}else {
-			throw new IllegalArgumentException("cannot sqrt number 0 or lower");
+		if(number < 0) {
+			throw new IllegalArgumentException("Can't square root negative");
 		}
-		return round2(result);
+		double guess = 1.0;
+		while(absValue(guess*guess - number) > 0.005) {
+			guess = (number/guess + guess)/2;
+		}
+		return round2(guess);
 	}
 	/*Does the quadratic equation of the coeff of a quadratic in standard form. Helps to find roots
 	 * Accepts 3 integers returns string
 	 */
 	public static String quadForm(int a, int b, int c) {
+		double root1 = (-b+(sqrt(discriminant(a,b,c))))/(2*a);
+		double root2 = (-b-(sqrt(discriminant(a,b,c))))/(2*a);
 		if(discriminant(a, b, c) < 0) {
 			return "No real roots";
 		}else if(discriminant(a,b,c) == 0) {
-			double singleRoot = (-b+(sqrt(discriminant(a,b,c))))/(2*a);
-			return ("SingleRoot: "+singleRoot);
+			return ("SingleRoot: "+root1);
 		}else {
-			double doubleRoot1 = (-b+(sqrt(discriminant(a,b,c))))/(2*a);
-			double doubleRoot2 = (-b-(sqrt(discriminant(a,b,c))))/(2*a);
-			return("Roots are: " + doubleRoot1 + "and" + doubleRoot2);
+			return("Roots are: " + root1 + " and " + root2);
 		}
 	}
 }
