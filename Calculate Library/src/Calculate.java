@@ -219,12 +219,16 @@ public class Calculate {
  * Accepts a double and returns a double
  */
 	public static double sqrt(double number) {
+		double guess = 1.0;
 		if(number < 0) {
 			throw new IllegalArgumentException("Can't square root negative");
 		}
-		double guess = 1.0;
-		while(absValue(guess*guess - number) > 0.005) {
-			guess = (number/guess + guess)/2;
+		if(number==0) {
+			guess = 0.0;
+		}else {
+			while(absValue(guess*guess - number) > 0.005) {
+				guess = (number/guess + guess)/2;
+			}
 		}
 		return round2(guess);
 	}

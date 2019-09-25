@@ -1,4 +1,70 @@
-
+/*Caleb Ng
+ * 9/25/19
+ * 
+ *  Takes in the coef of a quadratic standard equation and returns the direction it opens, vertex, and intercepts, and the equation
+ * Takes in 3 doubles returns a string
+ */
 public class Quadratic {
+	public static String QuadraticDescriber(double a, double b, double c ) {
+		String direction = "";
+		if(a > 0) {
+			direction = "Opens us";
+		}else if(a < 0) {
+			direction = "Opens down";
+		}else {
+			direction = "This is not a quadratic";
+		}
+		double xVertex = (-b) / (2 * a);
+		double yVertex = (a*(xVertex*xVertex)) + (b*xVertex) + c;
+		String vertex = ("(" + xVertex +',' + yVertex +')');
+		quadForm(a,b,c);
+		double yIntercept = ("yintercept" c);
+	}
 
+	public static double discriminant(double a, double b, double c) {
+		return  (b*b)-(4*a*c);
+	}
+	public static double absValue(double number) {
+		if(number <=0 ) {
+			return number *= -1;
+		}else {
+			return number;
+		}
+	}
+	public static double round2(double number) {
+		if(number >= 0) {
+			number = (number*100)+0.5;
+			number = (int)number;
+			return number/100;
+		}else {
+			number = (number +100) - 0.5;
+			number = (int) number;
+			return number/100;
+		}
+	}
+	public static double sqrt(double number) {
+		double guess = 1.0;
+		if(number < 0) {
+			throw new IllegalArgumentException("Can't square root negative");
+		}
+		if(number==0) {
+			guess = 0.0;
+		}else {
+			while(absValue(guess*guess - number) > 0.005) {
+				guess = (number/guess + guess)/2;
+			}
+		}
+		return round2(guess);
+	}
+	public static String quadForm(double a, double b, double c) {
+		double root1 = (-b+(sqrt(discriminant(a,b,c))))/(2*a);
+		double root2 = (-b-(sqrt(discriminant(a,b,c))))/(2*a);
+		if(discriminant(a, b, c) < 0) {
+			return "No real roots";
+		}else if(discriminant(a,b,c) == 0) {
+			return ("SingleRoot: "+root1);
+		}else {
+			return("Roots are: " + root1 + " and " + root2);
+		}
+	}
 }
