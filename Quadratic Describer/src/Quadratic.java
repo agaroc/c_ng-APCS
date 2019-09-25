@@ -17,8 +17,12 @@ public class Quadratic {
 		double xVertex = (-b) / (2 * a);
 		double yVertex = (a*(xVertex*xVertex)) + (b*xVertex) + c;
 		String vertex = ("(" + xVertex +',' + yVertex +')');
-		quadForm(a,b,c);
-		double yIntercept = ("yintercept" c);
+		String roots = quadForm(a,b,c);
+		String yIntercept = ("y-intercept: " + c);
+		String equation = (a+"^2" + '+' + b+'x' + '+' + c);
+		String output = ("Description of the g \n" + equation + "\n" + direction + "Axis of Symmetry: " + xVertex + "\n" + "Vertex: " + vertex + "\n" + 
+				"x-intercept(s): " + roots + "\n" + yIntercept);
+		return output;
 	}
 
 	public static double discriminant(double a, double b, double c) {
@@ -62,9 +66,9 @@ public class Quadratic {
 		if(discriminant(a, b, c) < 0) {
 			return "No real roots";
 		}else if(discriminant(a,b,c) == 0) {
-			return ("SingleRoot: "+root1);
+			return (root1 + "");
 		}else {
-			return("Roots are: " + root1 + " and " + root2);
+			return(root1 + "and" + root2);
 		}
 	}
 }
