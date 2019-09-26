@@ -236,8 +236,8 @@ public class Calculate {
 	 * Accepts 3 integers returns string
 	 */
 	public static String quadForm(int a, int b, int c) {
-		double root1 = (-b+(sqrt(discriminant(a,b,c))))/(2*a);
-		double root2 = (-b-(sqrt(discriminant(a,b,c))))/(2*a);
+		double root1 = round2((-b+(sqrt(discriminant(a,b,c))))/(2*a));
+		double root2 = round2((-b-(sqrt(discriminant(a,b,c))))/(2*a));
 		if(discriminant(a, b, c) < 0) {
 			return "No real roots";
 		}else if(discriminant(a,b,c) == 0) {
