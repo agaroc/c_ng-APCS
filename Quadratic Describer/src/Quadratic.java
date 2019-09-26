@@ -14,8 +14,8 @@ public class Quadratic {
 		}else {
 			direction = "This is not a quadratic";
 		}
-		double xVertex = (-b) / (2 * a);
-		double yVertex = (a*(xVertex*xVertex)) + (b*xVertex) + c;
+		double xVertex = round2((-b) / (2 * a));
+		double yVertex = round2((a*(xVertex*xVertex)) + (b*xVertex) + c);
 		String vertex = ("(" + xVertex +',' + yVertex +')');
 		String roots = quadForm(a,b,c);
 		String yIntercept = ("y-intercept: " + c);
@@ -61,14 +61,14 @@ public class Quadratic {
 		return round2(guess);
 	}
 	public static String quadForm(double a, double b, double c) {
-		double root1 = (-b+(sqrt(discriminant(a,b,c))))/(2*a);
-		double root2 = (-b-(sqrt(discriminant(a,b,c))))/(2*a);
+		double root1 = round2((-b+(sqrt(discriminant(a,b,c))))/(2*a));
+		double root2 = round2((-b-(sqrt(discriminant(a,b,c))))/(2*a));
 		if(discriminant(a, b, c) < 0) {
 			return "No real roots";
 		}else if(discriminant(a,b,c) == 0) {
 			return (root1 + "");
 		}else {
-			return(root1 + "and" + root2);
+			return (root1 + "and" + root2);
 		}
 	}
 }

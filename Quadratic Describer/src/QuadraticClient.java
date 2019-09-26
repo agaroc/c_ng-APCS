@@ -13,14 +13,17 @@ public class QuadraticClient {
 		Scanner inputScanner = new Scanner(System.in);
 		do {
 			System.out.println("Welome to the Quadratic Describer");
-			System.out.println("Provide values for coefficients a,b,and c");
+			System.out.println("Provide values for coefficients a, b, and c");
+			System.out.println();
 			System.out.print("a:");
 			a = inputScanner.nextDouble();
 			System.out.print("b:");
 			b = inputScanner.nextDouble();
 			System.out.print("c: ");
 			c = inputScanner.nextDouble();
+			System.out.println();
 			System.out.println(Quadratic.QuadraticDescriber(a, b, c));
+			System.out.println();
 			System.out.println("Do you want to keep going? (Type \"quit\" to end)");
 			stringResume = inputScanner.next();
 		}while(stringResume.equals(stop) != true); 	
