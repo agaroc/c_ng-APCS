@@ -9,7 +9,7 @@ public class QuadraticClient {
 		double b = 0;
 		double c = 0;
 		String stringResume = "";
-		String BREAK = "quit";
+		String stop = "quit";
 		Scanner inputScanner = new Scanner(System.in);
 		do {
 			System.out.println("Welome to the Quadratic Describer");
@@ -23,6 +23,6 @@ public class QuadraticClient {
 			System.out.println(Quadratic.QuadraticDescriber(a, b, c));
 			System.out.println("Do you wan to keep going? (Type \"quit\" to end)");
 			stringResume = inputScanner.next();
-		}while(stringResume.equals(BREAK) != true); 	
+		}while(stringResume.equals(stop) != true); 	
 	}	
 }
