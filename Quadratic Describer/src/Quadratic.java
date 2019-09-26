@@ -8,9 +8,9 @@ public class Quadratic {
 	public static String QuadraticDescriber(double a, double b, double c ) {
 		String direction = "";
 		if(a > 0) {
-			direction = "Opens us";
+			direction = "Opens: Up";
 		}else if(a < 0) {
-			direction = "Opens down";
+			direction = "Opens: Down";
 		}else {
 			direction = "This is not a quadratic";
 		}
@@ -19,8 +19,8 @@ public class Quadratic {
 		String vertex = ("(" + xVertex +',' + yVertex +')');
 		String roots = quadForm(a,b,c);
 		String yIntercept = ("y-intercept: " + c);
-		String equation = (a+"^2" + '+' + b+'x' + '+' + c);
-		String output = ("Description of the g \n" + equation + "\n" + direction + "Axis of Symmetry: " + xVertex + "\n" + "Vertex: " + vertex + "\n" + 
+		String equation = (a+"x^2" + '+' + b+'x' + '+' + c);
+		String output = ("Description of the graph \n" + equation + "\n" + direction + "\n" + "Axis of Symmetry: " + xVertex + "\n" + "Vertex: " + vertex + "\n" + 
 				"x-intercept(s): " + roots + "\n" + yIntercept);
 		return output;
 	}
