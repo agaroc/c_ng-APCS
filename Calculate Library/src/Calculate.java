@@ -138,7 +138,7 @@ public class Calculate {
 			number = (int)number;
 			return number/100;
 		}else {
-			number = (number +100) - 0.5;
+			number = (number*100) - 0.5;
 			number = (int) number;
 			return number/100;
 		}
