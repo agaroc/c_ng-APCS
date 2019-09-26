@@ -19,8 +19,8 @@ public class Quadratic {
 		String vertex = ("(" + xVertex +',' + yVertex +')');
 		String roots = quadForm(a,b,c);
 		String yIntercept = ("y-intercept: " + c);
-		String equation = (a+"x^2" + '+' + b+'x' + '+' + c);
-		String output = ("Description of the graph \n" + equation + "\n" + direction + "\n" + "Axis of Symmetry: " + xVertex + "\n" + "Vertex: " + vertex + "\n" + 
+		String equation = ("y= " +a+ "x^2" + '+' + b+'x' + '+' + c);
+		String output = ("Description of the graph \n" + equation + "\n" + "\n" + direction + "\n" + "Axis of Symmetry: " + xVertex + "\n" + "Vertex: " + vertex + "\n" + 
 				"x-intercept(s): " + roots + "\n" + yIntercept);
 		return output;
 	}
