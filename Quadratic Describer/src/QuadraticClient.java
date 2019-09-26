@@ -21,7 +21,7 @@ public class QuadraticClient {
 			System.out.print("c: ");
 			c = inputScanner.nextDouble();
 			System.out.println(Quadratic.QuadraticDescriber(a, b, c));
-			System.out.println("Do you wan to keep going? (Type \"quit\" to end)");
+			System.out.println("Do you want to keep going? (Type \"quit\" to end)");
 			stringResume = inputScanner.next();
 		}while(stringResume.equals(stop) != true); 	
 	}	
