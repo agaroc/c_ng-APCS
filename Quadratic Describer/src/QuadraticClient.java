@@ -27,5 +27,6 @@ public class QuadraticClient {
 			System.out.println("Do you want to keep going? (Type \"quit\" to end)");
 			stringResume = inputScanner.next();
 		}while(stringResume.equals(stop) != true); 	
+		inputScanner.close();
 	}	
 }
