@@ -72,7 +72,7 @@ public class Quadratic {
 		}
 	}
 	/* Takes in 3 doubles and returns a string
-	 * Takes the equation and if a value is negative makes the equation - num not +-
+	 * Takes the equation and if a value is negative makes the equation - num not +- hi my name is bob
 	 */
 	public static String equation(double a, double b, double c) {
 		String equation = "";
