@@ -235,8 +235,8 @@ public class Calculate {
 		}
 		return round2(guess);
 	}
-	/*Does the quadratic equation of the coeff of a quadratic in standard form. Helps to find roots
-	 * Accepts 3 integers returns string
+	/*Does the quadratic equation of the coeff of a quadratic in standard form. Helps to find roots of a quadratic
+	 * Accepts 3 integers returns string 
 	 */
 	public static String quadForm(int a, int b, int c) {
 		double root1 = round2((-b+(sqrt(discriminant(a,b,c))))/(2*a));
