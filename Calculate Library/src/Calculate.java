@@ -71,13 +71,13 @@ public class Calculate {
 		int numberA = a * c;
 		int numberB = (a*d) + (b*c);
 		int numberC = d*b;
-		return (numberA+variable + '+' + numberB+variable + '+' + numberC);
+		return (numberA+variable+"^2" + " + " + numberB+variable + " + " + numberC);
 	}
 	/* takes two numbers and sees if it is divisble if it is return true otherwise false
 	 * Accepts two integers and returns boolean
 	 */
 	public static boolean isDivisibleBy(int number1, int number2) {
-		if(number1 == 0 || number2 ==0) {
+		if(number2 ==0) {
 			throw new IllegalArgumentException("Can't divide by 0");
 		}else {
 			if(number1%number2 == 0 || number2%number1 == 0) {
@@ -148,6 +148,9 @@ public class Calculate {
 	 */
 	public static double exponent(double number, int powerNumber) {
 		double result = number;
+		if(number == 0) {
+			throw new IllegalArgumentException("Base can't be 0");
+		}
 		if(powerNumber < 0) {
 			for(int i = 1; i > (powerNumber); i--) {
 				result /= number;
@@ -241,9 +244,14 @@ public class Calculate {
 		if(discriminant(a, b, c) < 0) {
 			return "No real roots";
 		}else if(discriminant(a,b,c) == 0) {
-			return ("SingleRoot: "+root1);
+			return (""+root1);
 		}else {
-			return("Roots are: " + root1 + " and " + root2);
+			double maxRoot = max(root1, root2);
+			if(root1 == maxRoot) {
+				return(root2 + " and " + maxRoot);
+			}else {
+				return(root1 + " and " + maxRoot);
+			}
 		}
 	}
 }
