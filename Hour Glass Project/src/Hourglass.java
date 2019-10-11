@@ -32,7 +32,7 @@ public class Hourglass {
 	public static void Bottom() {
 		for(int line = 1; line <= 5; line++) {
 			System.out.println();
-			for(int space = line; space >= line; space--) { // error
+			for(int space = line; space >= line; space--) { // error why 
 				System.out.print(" ");
 			}
 			System.out.print("/");
