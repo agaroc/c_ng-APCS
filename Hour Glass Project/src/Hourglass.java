@@ -5,6 +5,7 @@
 public class Hourglass {
 	public static void main(String[]args) {
 		Top(10);
+		Bottom();
 	}
 	public static void Top(int size) {
 		System.out.print("|");
@@ -28,7 +29,17 @@ public class Hourglass {
 			}
 		}
 	}
-	public void static Bottom(int size) {
-		
+	public static void Bottom() {
+		for(int line = 1; line <= 5; line++) {
+			System.out.println();
+			for(int space = line; space >= line; space--) { // error
+				System.out.print(" ");
+			}
+			System.out.print("/");
+			for(int colon = 1; colon <= (2*line); colon++) {
+				System.out.print(":");
+			}
+			System.out.print("\\");
+		}
 	}
 }
