@@ -204,18 +204,14 @@ public class Calculate {
 	public static int gcf(int number1, int number2) {
 		int smallestNum = 0;
 		int largestFactor = 0;
-		if(number1 == 0 || number2 == 0) {	
-			throw new IllegalArgumentException("Can't do gcf of 0");
-  	    }else {
-  	    	smallestNum = min(number1, number2);
-			for(int i = 1;i <= smallestNum; i++) {
-				if(isDivisibleBy(number1, i) &&  isDivisibleBy(i, number2)) {
-					if(largestFactor < i) {
-						largestFactor = i;
-					}
+  	    smallestNum = min(number1, number2);
+		for(int i = 1;i <= smallestNum; i++) {
+			if(isDivisibleBy(number1, i) &&  isDivisibleBy(i, number2)) {
+				if(largestFactor < i) {
+					largestFactor = i;
 				}
-		    }
-  	    }
+			}
+		}
 		return largestFactor;
 	}
 /* returns the square root of a given positive number and rounds to the 2 decimal
