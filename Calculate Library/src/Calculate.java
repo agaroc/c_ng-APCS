@@ -235,13 +235,16 @@ public class Calculate {
 	 * Accepts 3 integers returns string 
 	 */
 	public static String quadForm(int a, int b, int c) {
-		double root1 = round2((-b+(sqrt(discriminant(a,b,c))))/(2*a));
-		double root2 = round2((-b-(sqrt(discriminant(a,b,c))))/(2*a));
+		double root1 = 0;
+		double root2 = 0;
 		if(discriminant(a, b, c) < 0) {
 			return "No real roots";
 		}else if(discriminant(a,b,c) == 0) {
+			root1 = round2((-b+(sqrt(discriminant(a,b,c))))/(2*a));
 			return (""+root1);
 		}else {
+			root1 = round2((-b+(sqrt(discriminant(a,b,c))))/(2*a));
+			root2 = round2((-b-(sqrt(discriminant(a,b,c))))/(2*a));
 			double maxRoot = max(root1, root2);
 			if(root1 == maxRoot) {
 				return(root2 + " and " + maxRoot);

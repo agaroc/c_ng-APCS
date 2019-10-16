@@ -6,6 +6,6 @@
 public class DoMath {
 
 	public static void main(String[] args) {
-		System.out.println(Calculate.isDivisibleBy(0, 2));
+		System.out.println(Calculate.quadForm(1,5,6));
 	}
 }
