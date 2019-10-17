@@ -5,12 +5,24 @@
 import java.util.*;
 public class Hourglass {
 	public static void main(String[]args) {
-		Scanner userInput = new Scanner(System.in);
+		/*Scanner userInput = new Scanner(System.in);
 		System.out.print("What size hourglass do you want?(Enter an integer) ");
 		int size = userInput.nextInt();
 		Top(size);
 		Bottom(size);
-		userInput.close();
+		userInput.close();*/
+		int size = 10;
+		for(int line = 1; line < size; line++) {
+			System.out.println();
+			for(int space = 0; space < line; space++) {
+				System.out.print(" ");
+			}
+				System.out.print("\\");
+				for(int colon = 1; colon <= size; colon++) {
+					System.out.print(":");
+				}
+				System.out.print("/");
+		}
 	}
 	public static void Top(int size) {
 		System.out.print("|");
