@@ -5,64 +5,60 @@
 import java.util.*;
 public class Hourglass {
 	public static void main(String[]args) {
-		/*Scanner userInput = new Scanner(System.in);
+		Scanner userInput = new Scanner(System.in);
 		System.out.print("What size hourglass do you want?(Enter an integer) ");
 		int size = userInput.nextInt();
 		Top(size);
 		Bottom(size);
-		userInput.close();*/
-		int size = 10;
-		for(int line = 1; line < size; line++) {
-			System.out.println();
-			for(int space = 0; space < line; space++) {
-				System.out.print(" ");
-			}
-				System.out.print("\\");
-				for(int colon = 1; colon <= size; colon++) {
-					System.out.print(":");
-				}
-				System.out.print("/");
-		}
+		userInput.close();
 	}
 	public static void Top(int size) {
-		System.out.print("|");
-		for(int quote = 1; quote <= 10; quote++) {
-			System.out.print ("\"");
+		String topHour = "";
+		topHour += "|";
+		for(int quote = 1; quote <= size; quote++) {
+			topHour += ("\"");
 		}
-		System.out.print("|");
-		for(int line = 1; line < 5; line++) {
-			System.out.println();
+		topHour += ("|\n");
+		if(size%2!=0) {
+			size++;
+		}
+		for(int line = 1; line < size/2; line++) { 
 			for(int space = 0; space < line; space++) {
-				System.out.print(" ");
+				topHour += (" ");
 			}
-				System.out.print("\\");
-				for(int colon = 1; colon <= (-2*line+10); colon++) {
-					System.out.print(":");
+				topHour+=("\\");
+				for(int colon = 0; colon <= (-2*line+size); colon++) {
+					topHour += (":");
 				}
-				System.out.print("/");
+				topHour += ("/\n");
 		}
+		System.out.print(topHour);
 	}
 	public static void Bottom(int size) {
-		for(int line = 5; line > 0; line--) {
-			System.out.println();
+		String bottomHour = "";
+		for(int line = size/2 ; line > 0; line--) {
 			for(int space = 0; space < line; space++) { 
-				System.out.print(" ");
+				bottomHour +=(" ");
 			}
-			if(line == 5) {
-				System.out.print("||");
-			}else {
-				System.out.print("/");
-				for(int colon = 1; colon <= (-2*line+10); colon++) {
-					System.out.print(":");
+			if(line == size/2) {
+				if(size % 2 ==0) {
+					bottomHour += ("||\n");
+				}else {
+					bottomHour += ("|||\n");
 				}
-				System.out.print("\\");
+			}else {
+				bottomHour+=("/");
+				for(int colon = 1; colon <= (-2*line+size); colon++) {
+					bottomHour+=(":");
+				}
+				bottomHour+= ("\\\n");
 			}
 		}
-		System.out.println();
-		System.out.print("|");
-		for(int quote = 1; quote <= 10; quote++) {
-			System.out.print ("\"");
+		bottomHour+=("|");
+		for(int quote = 1; quote <= size; quote++) {
+			bottomHour+=("\"");
 		}
-		System.out.println("|");
+		bottomHour+=("|");
+		System.out.println(bottomHour);
 	}
 }
