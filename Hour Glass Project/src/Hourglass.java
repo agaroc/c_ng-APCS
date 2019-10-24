@@ -1,11 +1,10 @@
 /*Caleb Ng
  * 10/9/19
- * Creates an hourglass
+ * Asks for the size of hourglass and prints your hourglass
  */
 import java.util.*;
 public class Hourglass {
 	public static void main(String[]args) {
-		boolean flag = true;
 		String quit = "";
 		Scanner userInput = new Scanner(System.in);
 		do {
@@ -13,9 +12,11 @@ public class Hourglass {
 			int size = userInput.nextInt();
 			Top(size);
 			Bottom(size);
-			System.out.print("Do you want to stop(type stop to quit)");
-			quit = userInput.nextLine();
+			System.out.print("Do you want to stop(type \"stop\" to quit) ");
+			quit = userInput.next();
 		} while(quit.equals("stop")!= true);	
+		userInput.close();
+	}
 	public static void Top(int size) {
 		String topHour = "";
 		topHour += "|";
