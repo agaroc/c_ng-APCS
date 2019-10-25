@@ -21,7 +21,7 @@ public class ProcessingNumbers {
 					sumEven += currentNumber;
 					if(max < currentNumber) {
 						maxEven = currentNumber; 
-					}
+					} 
 				}
 				if(max < currentNumber) {
 					max = currentNumber;

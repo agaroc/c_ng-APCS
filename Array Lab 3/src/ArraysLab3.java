@@ -1,7 +1,13 @@
+import java.util.Arrays;
 
 public class ArraysLab3 {
 
 	public static void main(String[] args) {
+		int [] arr1 = {1,2,3,4,6,7,7};
+		int [] arr2 = {1,2,3};
+		String stringArr = Arrays.toString(append(arr1, 4));
+		System.out.println(stringArr);
+		
 	}
 	public static int[] sum(int[] arr1, int[] arr2) {
 		int length = arr1.length;
@@ -13,25 +19,22 @@ public class ArraysLab3 {
 	}
 	public static int[] append(int[] arr, int idx) {
 		int[] appendArray = new int[arr.length+1];
-		for(int i = 0; i < arr.length+1;i++) {
-			if(i == arr.length+1) {
-				appendArray[i] = idx;
-			}else {
-				appendArray[i] = arr[i];
-			}
+		for(int i = 0; i < arr.length;i++) {
+			appendArray[i] = arr[i];
 		}
+		appendArray[arr.length] = idx;
 		return appendArray;
 	}
 	public static int[] remove(int[] arr, int idx) {
-		int[] removeArr = new int[arr.length];
-		for(int num : arr) {
-			if(arr[num] != idx) {
-				removeArr[num] = arr[num];
+		int[] removeArr = new int[arr.length-1];
+		for(int i = 0; i < arr.length; i++) {
+			if(i != idx) {
+				removeArr[i] = arr[i];
 			}
 		}
 		return removeArr;
 	}
-	public static int[]
+	//public static int[]
 }
 /*
 Create a class named ArraysLab3 that contains 6 static methods (main plus the 5 methods defined below).
