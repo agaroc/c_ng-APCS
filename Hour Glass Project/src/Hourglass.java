@@ -60,7 +60,7 @@ public class Hourglass {
 				if(middleNum % 2 == 0) {
 					bottomHour += ("||\n");
 				}else {
-					bottomHour += ("|\n");
+					bottomHour += ("|||\n");
 				}
 			}else {
 				bottomHour+=("/");

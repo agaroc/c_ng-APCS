@@ -69,7 +69,6 @@ public class Split {
 	}
 	public static String part1(String sandwich) {
 		String[] ingredients = sandwich.split("bread");
-		int arrLength = ingredients.length;
-		
+		String.indexOf()
 	}
 }
