@@ -37,7 +37,6 @@ public class Split {
 		System.out.println(part1("breadmayobread"));
 		System.out.println(part1("breadbread"));
 		System.out.println("breadmayobreadham");*/
-		System.out.println(Arrays.toString(part1("breadhambread")));
 		/*Write a method that take in a string like
 
 		* "applespineapplesbreadlettucetomatobaconmayohambreadcheese"
@@ -67,16 +66,20 @@ public class Split {
 		* Again, what if it's a fancy sandwich with multiple pieces of bread?
 
 		*/
+		System.out.println(part1("cheesebreadbread"));
 	}
 	public static String part1(String sandwich) {
 		String[] ingredients = sandwich.split("bread");
 		int breadValue = sandwich.indexOf("bread");
-		String newSandwich = sandwich.substring(breadValue);
-		int breadValue2 = newSandwich.indexOf("bread");
-		if(breadValue2 >= 0) {
-			return ingredients[1];
-		}else {
-			return "Not a sandwich";
+		if(breadValue >= 0) {
+			String newSandwich = sandwich.substring(breadValue+1);
+			int breadValue2 = newSandwich.indexOf("bread");
+			if(breadValue2 >= 0) {
+				return ingredients[1];
+			}else {
+				return "Not a sandwich";
+			}
 		}
+		return "Not a sandwich";
 	}
 }
