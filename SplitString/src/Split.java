@@ -22,14 +22,7 @@ public class Split {
 		//play around with String.split!
 
 		//What happens if you "I reallyreally likeapples".split("really") ?
-		String[] outputArray1 = "I really like apples!".split(" ");
-		System.out.println(Arrays.toString(outputArray1));
-		String[] outputArray2 = "I really like really red apples1".split("really");
-		String[] outputArray3 = "I really like really red apples!".split("really");
-		String[] outputArray4 = "really I really like really red apples!".split("really");	
-		System.out.println(Arrays.toString(outputArray2));
-		System.out.println(Arrays.toString(outputArray3));
-		System.out.println(Arrays.toString(outputArray4));
+
 		//Your task Part 1:
 	/*	System.out.println(part1("bread"));
 		System.out.println(part1("breadham"));
@@ -66,20 +59,32 @@ public class Split {
 		* Again, what if it's a fancy sandwich with multiple pieces of bread?
 
 		*/
-		System.out.println(part1("cheesebreadbread"));
+		System.out.println(part1("breadtomatobreadtomatobread")); 
 	}
 	public static String part1(String sandwich) {
 		String[] ingredients = sandwich.split("bread");
 		int breadValue = sandwich.indexOf("bread");
+		ingredients[0] = "";
+		for(String food: ingredients) {
+			if(food.equals("bread")){
+				
+			}
+		}
+	}
+	/*String[] ingredients = sandwich.split("bread");
+	int breadValue = sandwich.indexOf("bread");
+	if(ingredients.length == 0) {
+		return "";
+	}else {
 		if(breadValue >= 0) {
 			String newSandwich = sandwich.substring(breadValue+1);
 			int breadValue2 = newSandwich.indexOf("bread");
-			if(breadValue2 >= 0) {
+			if(breadValue2 >= 0 && ingredients.length > 1) {
 				return ingredients[1];
 			}else {
 				return "Not a sandwich";
 			}
 		}
 		return "Not a sandwich";
-	}
+	}*/
 }
