@@ -59,7 +59,11 @@ public class Split {
 		* Again, what if it's a fancy sandwich with multiple pieces of bread?
 
 		*/
-		System.out.println(part1("cheesebreadhambreadham")); 
+		System.out.println(part2("cheese bread ham ham ham ham bread ham")); 
+	}
+	public static String part2(String sandwich) {
+		sandwich.split(" ");
+		return part1(sandwich);
 	}
 	public static String part1(String sandwich) {
 		String[] ingredients = sandwich.split("bread");
