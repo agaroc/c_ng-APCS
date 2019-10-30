@@ -19,7 +19,7 @@ public class Quadratic {
 		String vertex = ("(" + xVertex +',' + yVertex +')');
 		String roots = quadForm(a,b,c);
 		String yIntercept = ("y-intercept: " + c);
-		String equation = ("y= " +a+ "x^2" + '+' + b+'x' + '+' + c);
+		String equation = equation(a,b,c);
 		String output = ("Description of the graph \n" + equation + "\n" + "\n" + direction + "\n" + "Axis of Symmetry: " + xVertex + "\n" + "Vertex: " + vertex + "\n" + 
 				"x-intercept(s): " + roots + "\n" + yIntercept);
 		return output;
@@ -70,5 +70,19 @@ public class Quadratic {
 		}else {
 			return (root1 + "and" + root2);
 		}
+	}
+	/* Takes in 3 doubles and returns a string
+	 * Takes the equation and if a value is negative makes the equation - num not +- hi my name is bob
+	 */
+	public static String equation(double a, double b, double c) {
+		String equation = "";
+		if(b < 0 && c <0) {
+			equation = ("y= " +a+ "x^2" + b+'x'+ c);
+		}else if(c<0) {
+			equation = ("y= " +a+ "x^2" + '+' + b+'x'+ c);
+		}else if(b<0) {
+			equation = ("y= " +a+ "x^2" + b+'x' + '+' + c);
+		}
+		return equation;
 	}
 }

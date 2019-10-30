@@ -71,13 +71,13 @@ public class Calculate {
 		int numberA = a * c;
 		int numberB = (a*d) + (b*c);
 		int numberC = d*b;
-		return (numberA+variable + '+' + numberB+variable + '+' + numberC);
+		return (numberA+variable+"^2" + " + " + numberB+variable + " + " + numberC);
 	}
 	/* takes two numbers and sees if it is divisble if it is return true otherwise false
 	 * Accepts two integers and returns boolean
 	 */
 	public static boolean isDivisibleBy(int number1, int number2) {
-		if(number1 == 0 || number2 ==0) {
+		if(number2 ==0) {
 			throw new IllegalArgumentException("Can't divide by 0");
 		}else {
 			if(number1%number2 == 0 || number2%number1 == 0) {
@@ -148,6 +148,9 @@ public class Calculate {
 	 */
 	public static double exponent(double number, int powerNumber) {
 		double result = number;
+		if(number == 0) {
+			throw new IllegalArgumentException("Base can't be 0");
+		}
 		if(powerNumber < 0) {
 			for(int i = 1; i > (powerNumber); i--) {
 				result /= number;
@@ -201,18 +204,20 @@ public class Calculate {
 	public static int gcf(int number1, int number2) {
 		int smallestNum = 0;
 		int largestFactor = 0;
-		if(number1 == 0 || number2 == 0) {	
-			throw new IllegalArgumentException("Can't do gcf of 0");
-  	    }else {
-  	    	smallestNum = min(number1, number2);
+		if(number1 == 0) {
+			largestFactor = number2;
+		}else if(number2 == 0) {
+			largestFactor = number1;
+		}else {
+		 smallestNum = min(number1, number2);
 			for(int i = 1;i <= smallestNum; i++) {
 				if(isDivisibleBy(number1, i) &&  isDivisibleBy(i, number2)) {
 					if(largestFactor < i) {
 						largestFactor = i;
 					}
 				}
-		    }
-  	    }
+			}
+		}
 		return largestFactor;
 	}
 /* returns the square root of a given positive number and rounds to the 2 decimal
@@ -232,18 +237,26 @@ public class Calculate {
 		}
 		return round2(guess);
 	}
-	/*Does the quadratic equation of the coeff of a quadratic in standard form. Helps to find roots
-	 * Accepts 3 integers returns string
+	/*Does the quadratic equation of the coeff of a quadratic in standard form. Helps to find roots of a quadratic
+	 * Accepts 3 integers returns string 
 	 */
 	public static String quadForm(int a, int b, int c) {
-		double root1 = round2((-b+(sqrt(discriminant(a,b,c))))/(2*a));
-		double root2 = round2((-b-(sqrt(discriminant(a,b,c))))/(2*a));
+		double root1 = 0;
+		double root2 = 0;
 		if(discriminant(a, b, c) < 0) {
 			return "No real roots";
 		}else if(discriminant(a,b,c) == 0) {
-			return ("SingleRoot: "+root1);
+			root1 = round2((-b+(sqrt(discriminant(a,b,c))))/(2*a));
+			return (""+root1);
 		}else {
-			return("Roots are: " + root1 + " and " + root2);
+			root1 = round2((-b+(sqrt(discriminant(a,b,c))))/(2*a));
+			root2 = round2((-b-(sqrt(discriminant(a,b,c))))/(2*a));
+			double maxRoot = max(root1, root2);
+			if(root1 == maxRoot) {
+				return(root2 + " and " + maxRoot);
+			}else {
+				return(root1 + " and " + maxRoot);
+			}
 		}
 	}
 }
