@@ -41,9 +41,9 @@ public class ArraysLab3 {
 	}
 	public static int[] remove(int[] arr, int idx) {
 		int[] removeArr = new int[arr.length-1];
-		for(int i = 0, k= 0; i < arr.length;i++) {
+		for(int i = 0, j= 0; i < arr.length;i++) {
 			if(i != idx) {
-				removeArr[k++] = arr[i];
+				removeArr[j++] = arr[i];
 			}
 		}
 		
