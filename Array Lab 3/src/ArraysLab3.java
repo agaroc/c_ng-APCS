@@ -17,11 +17,12 @@ public class ArraysLab3 {
 		int [] appendArr = append(a1,appendNum);
 		int [] removeArr = remove(a2, removeIdx);
 		int sumOfEvens = sumEven(appendArr);
+		rotateRight(a1);
 		System.out.println(Arrays.toString(sumArr));
 		System.out.println(Arrays.toString(appendArr));
 		System.out.println(Arrays.toString(removeArr));
 		System.out.println(sumOfEvens);
-		rotateRight(a1);
+		System.out.println(Arrays.toString(a1));
 	}
 	public static int[] sum(int[] arr1, int[] arr2) {
 		int length = arr1.length;
@@ -51,18 +52,18 @@ public class ArraysLab3 {
 	}
 	public static int sumEven(int[] arr) {
 		int sum = 0;
-		for(int currentNumber: arr) {
-			if(currentNumber % 2 ==0) {
-				sum += currentNumber;
+		for(int i = 0; i < arr.length;i++) {
+			if(i % 2 ==0) {
+				sum += arr[i];
 			}
 		}
 		return sum;
 	}
 	public static void rotateRight(int[] arr) {
-		int [] rightArr = new int[arr.length+1];
-		for(int i = 0; i < arr.length; i++) {
-			rightArr[i+1] = arr[i];
+		int last = arr[arr.length-1];
+		for(int i = arr.length-1; i > 0; i--) {
+			arr[i] = arr[i-1];
 		}
-		System.out.println(Arrays.toString(rightArr));
+		arr[0] = last;
 	}
 }
