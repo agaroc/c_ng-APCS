@@ -12,6 +12,7 @@ public class FracCalc {
     		System.out.println("Do you want to continue? Type (quit) to exit");
     		stop = userInput.nextLine();
     	}while(!stop.equals("quit"));	
+    	userInput.close();
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -27,7 +28,23 @@ public class FracCalc {
     	String opperand1 = splitOpperands[0];
     	String opperand2 = splitOpperands[1];
     	String opperand3 = splitOpperands[2];
-    	return opperand3;
+    	String[] checkWhole1 = opperand1.split("_");
+    	String[] checkWhole2 = opperand3.split("_");
+    	String whole1 = checkWhole1[1];
+    	String whole2 = checkWhole2[1];  
+    	String[] frac1 = whole1.split("/");
+    	String[] frac2 = whole2.split("/");
+    	int[] fracNum = new int[frac1.length];
+    	int[] fracNum2 = new int[frac1.length];
+    	for(int i = 0; i < frac1.length; i++) {
+    		int num = Integer.parseInt(frac1[i]);
+    		fracNum[i] = num;
+    	}
+    	for(int i = 0; i < frac1.length; i++) {
+    		int num = Integer.parseInt(frac2[i]);
+    		fracNum2[i] = num;
+    	}
+    	String result = ("whole:"+whole2)
     }
      
         // TODO: Implement this function to produce the solution to the input
