@@ -44,7 +44,13 @@ public class FracCalc {
     		int num = Integer.parseInt(frac2[i]);
     		fracNum2[i] = num;
     	}
-    	String result = ("whole:"+whole2)
+    	String numerator = frac1[0];
+    	String denom = frac1[0];
+    	String numerator2 = frac2[0];
+    	String denom2 = frac2[1];
+    	String result = ("whole:"+whole2+ " numerator:"+numerator2+" denominator:"+denom2);
+    	System.out.println(result);
+    	return result;
     }
      
         // TODO: Implement this function to produce the solution to the input
