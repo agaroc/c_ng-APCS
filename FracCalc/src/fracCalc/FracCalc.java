@@ -40,6 +40,7 @@ public class FracCalc {
     	valueFrac2 = produceAns(checkWhole2, length2);
     	String result = ("whole:"+valueFrac1[0]+ " numerator:"+valueFrac1[1]+" denominator:"+valueFrac1[2] +"\nwhole:"+valueFrac2[0]+ " numerator:"+valueFrac2[1]+ " denominator:"+valueFrac2[2]);
     	return result;
+    	//8
     }
     public static int[] produceAns(String[]arr, int length) {
     	String frac[] = {};
