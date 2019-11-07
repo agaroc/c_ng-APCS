@@ -30,30 +30,32 @@ public class FracCalc {
     	String opperand3 = splitOpperands[2];
     	String[] checkWhole1 = opperand1.split("_");
     	String[] checkWhole2 = opperand3.split("_");
-    	int whole2 = 0;
-    	int denom2 = 0;
-    	int whole1 = 0;
-    	int denom1 = 0;
-    	int numerator1 = 0;
-    	String frac2[] = {};
-    	String frac1[] = {};
-    	int numerator2 = 0;
-    	String[] checkFracLen = opperand3.split("/");
-    	if(checkWhole2.length == 2) {
-	    	whole2 = Integer.parseInt(checkWhole2[0]);
-	    	frac2 = checkWhole2[1].split("/");
-	    	numerator2 = Integer.parseInt(frac2[0]);
-	    	denom2 = Integer.parseInt(frac2[1]);
-	    }else if(checkFracLen.length == 2){
-	    	frac2 = checkWhole2[0].split("/");
-	    	denom2 = Integer.parseInt(frac2[1]);
-	    	numerator2 = Integer.parseInt(frac2[0]);
+    	int valueFrac1[] = {0,0,1};
+    	int valueFrac2[] = {0,0,1};
+    	String[] checkFracLen2 = opperand3.split("/");
+    	String[] checkFracLen1 = opperand1.split("/");
+    	int length1 = checkFracLen1.length;
+    	int length2 = checkFracLen2.length;
+    	valueFrac1 = produceAns(checkWhole1, length1);
+    	valueFrac2 = produceAns(checkWhole2, length2);
+    	String result = ("whole:"+valueFrac1[0]+ " numerator:"+valueFrac1[1]+" denominator:"+valueFrac1[2] +"\nwhole:"+valueFrac2[0]+ " numerator:"+valueFrac2[1]+ " denominator:"+valueFrac2[2]);
+    	return result;
+    }
+    public static int[] produceAns(String[]arr, int length) {
+    	String frac[] = {};
+    	int result[] = {0, 0, 1};
+    	if(arr.length == 2) {
+	    	result[0] = Integer.parseInt(arr[0]);
+	    	frac = arr[1].split("/");
+	    	result[1] = Integer.parseInt(frac[0]);
+	    	result[2] = Integer.parseInt(frac[1]);
+	    }else if(length == 2){
+	    	frac = arr[0].split("/");
+	    	result[2] = Integer.parseInt(frac[1]);
+	    	result[1] = Integer.parseInt(frac[0]);
 	    }else {
-	    	whole2 = Integer.parseInt(checkWhole2[0]);
-	    	denom2 = 1;
-	    	numerator2 = 0;
-	    }						
-    	String result = ("whole:"+whole2+ " numerator:"+numerator2+" denominator:"+denom2);
+	    	result[0] = Integer.parseInt(arr[0]);
+	    }
     	return result;
     }
 
