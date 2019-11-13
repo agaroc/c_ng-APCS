@@ -14,15 +14,6 @@ public class FracCalc {
     	}while(!stop.equals("quit"));	
     	userInput.close();
     }
-    
-    // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
-    // This function takes a String 'input' and produces the result
-    //
-    // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
-    //      e.g. input ==> "1/2 + 3/4"
-    //        
-    // The function should return the result of the fraction after it has been calculated
-    //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input){
     	String[] splitOpperands = input.split(" ");
     	String opperand1 = splitOpperands[0];
@@ -36,13 +27,19 @@ public class FracCalc {
     	String[] checkFracLen1 = opperand1.split("/");
     	int length1 = checkFracLen1.length;
     	int length2 = checkFracLen2.length;
-    	valueFrac1 = produceAns(checkWhole1, length1);
-    	valueFrac2 = produceAns(checkWhole2, length2);
-    	String result = ("whole:"+valueFrac1[0]+ " numerator:"+valueFrac1[1]+" denominator:"+valueFrac1[2] +"\nwhole:"+valueFrac2[0]+ " numerator:"+valueFrac2[1]+ " denominator:"+valueFrac2[2]);
+    	valueFrac1 = produceSplit(checkWhole1, length1);
+    	valueFrac2 = produceSplit(checkWhole2, length2);
+    	String displayNums = ("whole:"+valueFrac1[0]+ " numerator:"+valueFrac1[1]+" denominator:"+valueFrac1[2] +"\nwhole:"+valueFrac2[0]+ " numerator:"+valueFrac2[1]+ " denominator:"+valueFrac2[2]);
+    	String [] improper1 = toImproperFrac(valueFrac1[0], valueFrac1[1], valueFrac1[2]);
+    	String [] improper2 = toImproperFrac(valueFrac2[0], valueFrac2[1], valueFrac2[2]);
+    	if(opperand2.equals("*") || opperand2.equals("/")) {
+        	String result = arithmetic(Integer.parseInt(improper1[0]), Integer.parseInt(improper1[1]), Integer.parseInt(improper2[0]), Integer.parseInt(improper2[1]), opperand2);
+
+    	}
+    	String result = arithmetic(Integer.parseInt(improper1[0]), Integer.parseInt(improper1[1]), Integer.parseInt(improper2[0]), Integer.parseInt(improper2[1]), opperand2);
     	return result;
-    	//8
     }
-    public static int[] produceAns(String[]arr, int length) {
+    public static int[] produceSplit(String[]arr, int length) {
     	String frac[] = {};
     	int result[] = {0, 0, 1};
     	if(arr.length == 2) {
@@ -59,12 +56,79 @@ public class FracCalc {
 	    }
     	return result;
     }
-
-        // TODO: Implement this function to produce the solution to the input
-        
-        
-  
-
-    // TODO: Fill in the space below with any helper methods that you think you will need
+    public static String [] toImproperFrac(int whole, int numerator, int denominator) {
+		int newNumerator = whole*denominator+numerator;
+		String frac = (newNumerator + "/" + denominator);
+		String [] splitFrac = frac.split("/");
+		return splitFrac;
+	}
+    public static String arithmetic(int numerator1, int denominator1, int numerator2, int denominator2, String operation) {
+    	int commonDenom = denominator2 * denominator1;
+    	int commonMultiplier1 = gcf(denominator1, commonDenom);
+    	int commonMultiplier2 = gcf(denominator2, commonDenom);
+    	String newFrac = "";
+    	if(operation.equals("+")) {
+    		int newNumerator = (numerator1*commonMultiplier2) + (numerator2*commonMultiplier1);
+    		int simplifyValue = gcf(newNumerator, commonDenom);
+        	newFrac = (newNumerator/simplifyValue+"/"+commonDenom/simplifyValue);
+    	}else{
+    		int newNumerator = (numerator1*commonMultiplier2)-(commonMultiplier1*numerator2);
+    		int simplifyValue = gcf(newNumerator, commonDenom);
+        	newFrac = (newNumerator/simplifyValue+"/"+commonDenom/simplifyValue);
+    	}
+    	return newFrac;
+    }
+    public static String multiplyOrDivide(int numerator1, int denominator1, int numerator2, int denominator2, String operation) {
+    	String newFrac = "";
+    	if(operation.equals("*")) {
+    		int newNumerator = numerator1* numerator2;
+    		int newDenominator = denominator1*denominator2;
+    		int simplify = gcf(newNumerator, newDenominator);
+    		newFrac = (newNumerator/simplify+"/"+newDenominator/simplify);
+    	}else {
+    		int newNumerator = numerator1 * denominator2;
+    		int newDenominator = denominator1 * numerator2;
+    		int simplify = gcf(newNumerator, newDenominator);
+    		newFrac = (newNumerator/simplify+"/"+newDenominator/simplify);
+    	}
+    	return newFrac;
+    }
+    public static int gcf(int number1, int number2) {
+		int smallestNum = 0;
+		int largestFactor = 0;
+		if(number1 == 0) {
+			largestFactor = number2;
+		}else if(number2 == 0) {
+			largestFactor = number1;
+		}else {
+		 smallestNum = min(number1, number2);
+			for(int i = 1;i <= smallestNum; i++) {
+				if(isDivisibleBy(number1, i) &&  isDivisibleBy(i, number2)) {
+					if(largestFactor < i) {
+						largestFactor = i;
+					}
+				}
+			}
+		}
+		return largestFactor;
+	}
+    public static boolean isDivisibleBy(int number1, int number2) {
+		if(number2 ==0) {
+			throw new IllegalArgumentException("Can't divide by 0");
+		}else {
+			if(number1%number2 == 0 || number2%number1 == 0) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+	}
+    public static int min(int number1, int number2) {
+		if(number1 <= number2) {
+			return number1;
+		}else {
+			return number2;
+		}
+	}
 
 }
