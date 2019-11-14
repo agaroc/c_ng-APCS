@@ -15,6 +15,7 @@ public class FracCalc {
     	userInput.close();
     }
     public static String produceAnswer(String input){
+    	String result = "";
     	String[] splitOpperands = input.split(" ");
     	String opperand1 = splitOpperands[0];
     	String opperand2 = splitOpperands[1];
@@ -33,10 +34,11 @@ public class FracCalc {
     	String [] improper1 = toImproperFrac(valueFrac1[0], valueFrac1[1], valueFrac1[2]);
     	String [] improper2 = toImproperFrac(valueFrac2[0], valueFrac2[1], valueFrac2[2]);
     	if(opperand2.equals("*") || opperand2.equals("/")) {
-        	String result = arithmetic(Integer.parseInt(improper1[0]), Integer.parseInt(improper1[1]), Integer.parseInt(improper2[0]), Integer.parseInt(improper2[1]), opperand2);
+        	result = multiplyOrDivide(Integer.parseInt(improper1[0]), Integer.parseInt(improper1[1]), Integer.parseInt(improper2[0]), Integer.parseInt(improper2[1]), opperand2);
 
+    	}else {
+    		result = arithmetic(Integer.parseInt(improper1[0]), Integer.parseInt(improper1[1]), Integer.parseInt(improper2[0]), Integer.parseInt(improper2[1]), opperand2);
     	}
-    	String result = arithmetic(Integer.parseInt(improper1[0]), Integer.parseInt(improper1[1]), Integer.parseInt(improper2[0]), Integer.parseInt(improper2[1]), opperand2);
     	return result;
     }
     public static int[] produceSplit(String[]arr, int length) {
@@ -64,32 +66,48 @@ public class FracCalc {
 	}
     public static String arithmetic(int numerator1, int denominator1, int numerator2, int denominator2, String operation) {
     	int commonDenom = denominator2 * denominator1;
+    	int simplifyValue = 0;
+    	int newNumerator = 0;
     	int commonMultiplier1 = gcf(denominator1, commonDenom);
     	int commonMultiplier2 = gcf(denominator2, commonDenom);
     	String newFrac = "";
     	if(operation.equals("+")) {
-    		int newNumerator = (numerator1*commonMultiplier2) + (numerator2*commonMultiplier1);
-    		int simplifyValue = gcf(newNumerator, commonDenom);
-        	newFrac = (newNumerator/simplifyValue+"/"+commonDenom/simplifyValue);
+    		newNumerator = (numerator1*commonMultiplier2) + (numerator2*commonMultiplier1);
+    		simplifyValue = gcf(newNumerator, commonDenom);
+    		newFrac = checkSimplifyValue(simplifyValue, newNumerator, commonDenom);
     	}else{
-    		int newNumerator = (numerator1*commonMultiplier2)-(commonMultiplier1*numerator2);
-    		int simplifyValue = gcf(newNumerator, commonDenom);
-        	newFrac = (newNumerator/simplifyValue+"/"+commonDenom/simplifyValue);
+    		newNumerator = (numerator1*commonMultiplier2)-(commonMultiplier1*numerator2);
+    		simplifyValue = gcf(newNumerator, commonDenom);
+    		newFrac = checkSimplifyValue(simplifyValue, newNumerator, commonDenom);
+    	}
+    	if(Math.abs(newNumerator)> Math.abs(commonDenom)) {
+    		newFrac = toMixedNum(newNumerator/simplifyValue, commonDenom/simplifyValue);
     	}
     	return newFrac;
     }
     public static String multiplyOrDivide(int numerator1, int denominator1, int numerator2, int denominator2, String operation) {
     	String newFrac = "";
+    	int newNumerator = 0;
+    	int newDenominator = 0;
+    	int simplifyValue = 0;
     	if(operation.equals("*")) {
-    		int newNumerator = numerator1* numerator2;
-    		int newDenominator = denominator1*denominator2;
-    		int simplify = gcf(newNumerator, newDenominator);
-    		newFrac = (newNumerator/simplify+"/"+newDenominator/simplify);
+    		newNumerator = numerator1* numerator2;
+    		newDenominator = denominator1*denominator2;
+    		simplifyValue = gcf(newNumerator, newDenominator);
+    		newFrac = checkSimplifyValue(simplifyValue, newNumerator, newDenominator);
     	}else {
-    		int newNumerator = numerator1 * denominator2;
-    		int newDenominator = denominator1 * numerator2;
-    		int simplify = gcf(newNumerator, newDenominator);
-    		newFrac = (newNumerator/simplify+"/"+newDenominator/simplify);
+    		newNumerator = numerator1 * denominator2;
+    		newDenominator = denominator1 * numerator2;
+    		simplifyValue = gcf(newNumerator, newDenominator);
+    		newFrac = checkSimplifyValue(simplifyValue, newNumerator, newDenominator);
+    	}
+    	if(Math.abs(newNumerator)> Math.abs(newDenominator)) {
+    		String fracArr[] = checkSimplifyValue(simplifyValue, newNumerator, newDenominator).split("/");
+    		newFrac = toMixedNum(Integer.parseInt(fracArr[0]), Integer.parseInt(fracArr[1]));
+    		String mixedArr[] = newFrac.split("_");
+    		if(Integer.parseInt(fracArr[0]) == 0){
+    			newFrac = mixedArr[0];
+    		}
     	}
     	return newFrac;
     }
@@ -130,5 +148,27 @@ public class FracCalc {
 			return number2;
 		}
 	}
-
+    public static String toMixedNum(int numerator, int denominator) {
+		int whole_number = numerator/ denominator;
+		int newNumerator = numerator%denominator;
+		return (whole_number + "_" + newNumerator + "/" + denominator);
+	}
+    public static String checkSimplifyValue(int simplifyValue, int numerator, int denominator) {
+    	String newFrac = "";
+    	if(simplifyValue != 0) {
+    		newFrac = (numerator/simplifyValue+"/"+denominator/simplifyValue);
+		}else {
+			newFrac = (numerator+"/"+denominator);
+		}
+    	return newFrac;
+    }
+    public static String checkMixed(int simplifyValue)
+	    if(Math.abs(newNumerator)> Math.abs(newDenominator)) {
+			String fracArr[] = checkSimplifyValue(simplifyValue, newNumerator, newDenominator).split("/");
+			newFrac = toMixedNum(Integer.parseInt(fracArr[0]), Integer.parseInt(fracArr[1]));
+			String mixedArr[] = newFrac.split("_");
+			if(Integer.parseInt(fracArr[0]) == 0){
+				newFrac = mixedArr[0];
+			}
+		}
 }
