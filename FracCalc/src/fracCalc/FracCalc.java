@@ -30,14 +30,13 @@ public class FracCalc {
     	int length2 = checkFracLen2.length;
     	valueFrac1 = produceSplit(checkWhole1, length1);
     	valueFrac2 = produceSplit(checkWhole2, length2);
-    	String displayNums = ("whole:"+valueFrac1[0]+ " numerator:"+valueFrac1[1]+" denominator:"+valueFrac1[2] +"\nwhole:"+valueFrac2[0]+ " numerator:"+valueFrac2[1]+ " denominator:"+valueFrac2[2]);
-    	String [] improper1 = toImproperFrac(valueFrac1[0], valueFrac1[1], valueFrac1[2]);
-    	String [] improper2 = toImproperFrac(valueFrac2[0], valueFrac2[1], valueFrac2[2]);
+    	int [] improper1 = toImproperFrac(valueFrac1[0], valueFrac1[1], valueFrac1[2]);
+    	int [] improper2 = toImproperFrac(valueFrac2[0], valueFrac2[1], valueFrac2[2]);
     	if(opperand2.equals("*") || opperand2.equals("/")) {
-        	result = multiplyOrDivide(Integer.parseInt(improper1[0]), Integer.parseInt(improper1[1]), Integer.parseInt(improper2[0]), Integer.parseInt(improper2[1]), opperand2);
+        	result = multiplyOrDivide(improper1[0], improper1[1], improper2[0], improper2[1], opperand2);
 
     	}else {
-    		result = arithmetic(Integer.parseInt(improper1[0]), Integer.parseInt(improper1[1]), Integer.parseInt(improper2[0]), Integer.parseInt(improper2[1]), opperand2);
+    		result = arithmetic(improper1[0], improper1[1], improper2[0], improper2[1], opperand2);
     	}
     	return result;
     }
@@ -58,33 +57,29 @@ public class FracCalc {
 	    }
     	return result;
     }
-    public static String [] toImproperFrac(int whole, int numerator, int denominator) {
-		int newNumerator = whole*denominator+numerator;
-		String frac = (newNumerator + "/" + denominator);
-		String [] splitFrac = frac.split("/");
+    public static int [] toImproperFrac(int whole, int numerator, int denominator) {
+		int newNumerator = 0;
+		if(whole<0) {
+			newNumerator = whole* denominator- numerator;
+		}else {
+			newNumerator = whole * denominator + numerator;
+		}
+		int [] splitFrac = {newNumerator, denominator};
 		return splitFrac;
 	}
     public static String arithmetic(int numerator1, int denominator1, int numerator2, int denominator2, String operation) {
     	int commonDenom = denominator2 * denominator1;
     	int simplifyValue = 0;
     	int newNumerator = 0;
-    	int commonMultiplier1 = gcf(denominator1, commonDenom);
-    	int commonMultiplier2 = gcf(denominator2, commonDenom);
     	String newFrac = "";
-    	System.out.println(numerator1);              // Something wrong with converting second fraction into improper
-    	System.out.println(numerator2);
     	if(operation.equals("+")) {
-    		newNumerator = (numerator1*commonMultiplier2) + (numerator2*commonMultiplier1);
-    		simplifyValue = gcf(newNumerator, commonDenom);
-    		newFrac = checkSimplifyValue(simplifyValue, newNumerator, commonDenom);
+    		newNumerator = (numerator1*denominator2) + (numerator2*denominator1);
     	}else{
-    		newNumerator = (numerator1*commonMultiplier2)-(commonMultiplier1*numerator2);
-    		System.out.println(newNumerator);
-    		System.out.println(numerator1);
-    		System.out.println(numerator2);
-    		simplifyValue = gcf(newNumerator, commonDenom);
-    		newFrac = checkSimplifyValue(simplifyValue, newNumerator, commonDenom);
+    		newNumerator = (numerator1*denominator2)-(denominator1*numerator2);
     	}
+    	simplifyValue = gcf(newNumerator, commonDenom);
+    	System.out.println(simplifyValue);
+    	newFrac = checkSimplifyValue(simplifyValue, newNumerator, commonDenom);
     	if(Math.abs(newNumerator)> Math.abs(commonDenom)) {
     		newFrac = toMixedNum(newNumerator/simplifyValue, commonDenom/simplifyValue);
     	}
@@ -98,27 +93,26 @@ public class FracCalc {
     	if(operation.equals("*")) {
     		newNumerator = numerator1* numerator2;
     		newDenominator = denominator1*denominator2;
-    		simplifyValue = gcf(newNumerator, newDenominator);
-    		newFrac = checkSimplifyValue(simplifyValue, newNumerator, newDenominator);
+
     	}else {
     		newNumerator = numerator1 * denominator2;
     		newDenominator = denominator1 * numerator2;
-    		simplifyValue = gcf(newNumerator, newDenominator);
-    		newFrac = checkSimplifyValue(simplifyValue, newNumerator, newDenominator);
     	}
+    	simplifyValue = gcf(newNumerator, newDenominator);
+    	newFrac = checkSimplifyValue(simplifyValue, newNumerator, newDenominator);
     	return newFrac;
     }
     public static int gcf(int number1, int number2) {
 		int smallestNum = 0;
 		int largestFactor = 0;
-		if(number1 == 0) {
-			largestFactor = number2;
-		}else if(number2 == 0) {
-			largestFactor = number1;
+		if(Math.abs(number1) == 0) {
+			largestFactor = Math.abs(number2);
+		}else if(Math.abs(number2) == 0) {
+			largestFactor = Math.abs(number1);
 		}else {
-		 smallestNum = min(number1, number2);
+		 smallestNum = min(Math.abs(number1), Math.abs(number2));
 			for(int i = 1;i <= smallestNum; i++) {
-				if(isDivisibleBy(number1, i) &&  isDivisibleBy(i, number2)) {
+				if(isDivisibleBy(Math.abs(number1), i) &&  isDivisibleBy(i, Math.abs(number2))) {
 					if(largestFactor < i) {
 						largestFactor = i;
 					}
@@ -147,8 +141,15 @@ public class FracCalc {
 	}
     public static String toMixedNum(int numerator, int denominator) {
 		int whole_number = numerator/ denominator;
-		int newNumerator = numerator%denominator;
-		return (whole_number + "_" + newNumerator + "/" + denominator);
+		int newNumerator = 0;
+		if(whole_number <0 ) {
+			newNumerator = Math.abs(numerator%denominator);
+		}else if(whole_number > 0){
+			newNumerator = Math.abs(numerator%denominator);
+		}else {
+		    newNumerator = numerator%denominator;
+		}
+		return (whole_number + "_" + newNumerator + "/" + Math.abs(denominator));
 	}
     public static String checkSimplifyValue(int simplifyValue, int numerator, int denominator) {
     	String newFrac = "";

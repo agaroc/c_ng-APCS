@@ -6,6 +6,6 @@
 public class DoMath {
 
 	public static void main(String[] args) {
-		System.out.println(Calculate.gcf(108,3));
+		System.out.println(Calculate.toImproperFrac(-2,2,4));
 	}
 }
