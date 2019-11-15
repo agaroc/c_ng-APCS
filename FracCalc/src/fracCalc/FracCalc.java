@@ -71,12 +71,17 @@ public class FracCalc {
     	int commonMultiplier1 = gcf(denominator1, commonDenom);
     	int commonMultiplier2 = gcf(denominator2, commonDenom);
     	String newFrac = "";
+    	System.out.println(numerator1);              // Something wrong with converting second fraction into improper
+    	System.out.println(numerator2);
     	if(operation.equals("+")) {
     		newNumerator = (numerator1*commonMultiplier2) + (numerator2*commonMultiplier1);
     		simplifyValue = gcf(newNumerator, commonDenom);
     		newFrac = checkSimplifyValue(simplifyValue, newNumerator, commonDenom);
     	}else{
     		newNumerator = (numerator1*commonMultiplier2)-(commonMultiplier1*numerator2);
+    		System.out.println(newNumerator);
+    		System.out.println(numerator1);
+    		System.out.println(numerator2);
     		simplifyValue = gcf(newNumerator, commonDenom);
     		newFrac = checkSimplifyValue(simplifyValue, newNumerator, commonDenom);
     	}
@@ -100,14 +105,6 @@ public class FracCalc {
     		newDenominator = denominator1 * numerator2;
     		simplifyValue = gcf(newNumerator, newDenominator);
     		newFrac = checkSimplifyValue(simplifyValue, newNumerator, newDenominator);
-    	}
-    	if(Math.abs(newNumerator)> Math.abs(newDenominator)) {
-    		String fracArr[] = checkSimplifyValue(simplifyValue, newNumerator, newDenominator).split("/");
-    		newFrac = toMixedNum(Integer.parseInt(fracArr[0]), Integer.parseInt(fracArr[1]));
-    		String mixedArr[] = newFrac.split("_");
-    		if(Integer.parseInt(fracArr[0]) == 0){
-    			newFrac = mixedArr[0];
-    		}
     	}
     	return newFrac;
     }
@@ -160,15 +157,15 @@ public class FracCalc {
 		}else {
 			newFrac = (numerator+"/"+denominator);
 		}
+    	if(Math.abs(numerator)> Math.abs(denominator)) {
+    		String fracArr[] = newFrac.split("/");
+    		newFrac = toMixedNum(Integer.parseInt(fracArr[0]), Integer.parseInt(fracArr[1]));
+    		String mixedArr[] = newFrac.split("_");
+    		String fracArr2[] = mixedArr[1].split("/");
+    		if(Integer.parseInt(fracArr2[0]) == 0){
+    			newFrac = mixedArr[0];
+    		}
+    	}
     	return newFrac;
     }
-    public static String checkMixed(int simplifyValue)
-	    if(Math.abs(newNumerator)> Math.abs(newDenominator)) {
-			String fracArr[] = checkSimplifyValue(simplifyValue, newNumerator, newDenominator).split("/");
-			newFrac = toMixedNum(Integer.parseInt(fracArr[0]), Integer.parseInt(fracArr[1]));
-			String mixedArr[] = newFrac.split("_");
-			if(Integer.parseInt(fracArr[0]) == 0){
-				newFrac = mixedArr[0];
-			}
-		}
 }
