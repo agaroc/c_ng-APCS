@@ -34,7 +34,9 @@ public class FracCalc {
     	int [] improper2 = toImproperFrac(valueFrac2[0], valueFrac2[1], valueFrac2[2]);
     	if(opperand2.equals("*") || opperand2.equals("/")) {
         	result = multiplyOrDivide(improper1, improper2, opperand2);
-
+        	if(improper1[0] == 0 || improper1[1] == 0 || improper2[0] == 0 || improper2[1] == 0) {
+        		result = "0";
+        	}
     	}else {
     		result = arithmetic(improper1, improper2, opperand2);
     	}
@@ -76,8 +78,13 @@ public class FracCalc {
     		fracArr[0] = (arr1[0]*arr2[1])-(arr1[1]*arr2[0]);
     	}
     	int simplifyValue = gcf(fracArr);
-    	System.out.println(simplifyValue);
-    	String newFrac = checkSimplifyValue(simplifyValue, fracArr[0], commonDenom);
+    	String newFrac = checkSimplifyValue(simplifyValue, fracArr);
+    	if(fracArr[0] == 0) {
+    		newFrac = "0";
+    	}else if(fracArr[0] == commonDenom) {
+    		String [] tempArr = newFrac.split("/");
+    		newFrac = tempArr[0];
+    	}
     	return newFrac;
     }
     public static String multiplyOrDivide(int[] arr1, int[] arr2, String operation) {
@@ -87,11 +94,16 @@ public class FracCalc {
     		fracArr[1] = arr1[1]* arr2[1];
 
     	}else {
-    		fracArr[0] = arr1[0] * arr2[1];
-    		fracArr[1] = arr1[1] * arr2[0];
+    		fracArr[0] = -1*(arr1[0] * arr2[1]);
+    		fracArr[1] = -1*(arr1[1] * arr2[0]);
+    		
     	}
     	int simplifyValue = gcf(fracArr);
-    	String newFrac = checkSimplifyValue(simplifyValue, fracArr[0], fracArr[1]);
+    	String newFrac = checkSimplifyValue(simplifyValue, fracArr);
+    	if(fracArr[0] == fracArr[1]) {
+    		String [] tempArr = newFrac.split("/");
+    		newFrac = tempArr[0];
+    	}
     	return newFrac;
     }
     public static int gcf(int [] arr) {
