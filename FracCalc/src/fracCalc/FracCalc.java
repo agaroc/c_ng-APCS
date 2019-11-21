@@ -78,7 +78,7 @@ public class FracCalc {
     		fracArr[0] = (arr1[0]*arr2[1])-(arr1[1]*arr2[0]);
     	}
     	int simplifyValue = gcf(fracArr);
-    	String newFrac = checkSimplifyValue(simplifyValue, fracArr);
+    	String newFrac = checkErrors(simplifyValue, fracArr);
     	if(fracArr[0] == 0) {
     		newFrac = "0";
     	}else if(fracArr[0] == commonDenom) {
@@ -94,12 +94,16 @@ public class FracCalc {
     		fracArr[1] = arr1[1]* arr2[1];
 
     	}else {
-    		fracArr[0] = -1*(arr1[0] * arr2[1]);
-    		fracArr[1] = -1*(arr1[1] * arr2[0]);
+    		fracArr[0] = (arr1[0] * arr2[1]);
+    		fracArr[1] = (arr1[1] * arr2[0]);
     		
     	}
     	int simplifyValue = gcf(fracArr);
-    	String newFrac = checkSimplifyValue(simplifyValue, fracArr);
+    	if(fracArr[1] < 0) {
+    		fracArr[1] *= -1;
+    		fracArr[0] *= -1;
+    	}
+    	String newFrac = checkErrors(simplifyValue, fracArr);
     	if(fracArr[0] == fracArr[1]) {
     		String [] tempArr = newFrac.split("/");
     		newFrac = tempArr[0];
@@ -154,7 +158,7 @@ public class FracCalc {
 		}
 		return (whole_number + "_" + newNumerator + "/" + Math.abs(denominator));
 	}
-    public static String checkSimplifyValue(int simplifyValue, int []arr) {
+    public static String checkErrors(int simplifyValue, int []arr) {
     	String newFrac = "";
     	if(simplifyValue != 0) {
     		newFrac = (arr[0]/simplifyValue+"/"+arr[1]/simplifyValue);
