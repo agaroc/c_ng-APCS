@@ -18,9 +18,13 @@ public class ArrayListPracticeLab
 	 * Write a method called convertArrayToList that accepts one parameter, an array of Strings, and returns 
 	 * an ArrayList containing those Strings hi
 	 */
-	
-	
-	
+	public static ArrayList<String> convertArrayToList(String [] Strings){
+		ArrayList<String> list = new ArrayList<String>();
+		for(String word: Strings) {
+			list.add(word);
+		}
+		return list;
+	}
 	
 	/*
 	 * maxLength
@@ -29,11 +33,15 @@ public class ArrayListPracticeLab
 	 * returns an int, the length of the longest string in the list. If your method is passed an 
 	 * empty list, it should return 0.
 	 */
-	
-	
-	
-	
-	
+	public static int maxLength(ArrayList<String> Strings) {
+		int longest = 0;
+		for(String word: Strings) {
+			if(word.length() > longest) {
+				longest = word.length();
+			}
+		}
+		return longest;
+	}
 	/*
 	 * swapPairs
 	 * 
@@ -51,7 +59,9 @@ public class ArrayListPracticeLab
 	 *  For example, if the input list is: {"to", "be", "or", "not", "to", "be", "hamlet"} 
 	 *  The returned list should contain {"be", "to", "not", "or", "be", "to", "hamlet"}
 	 */
-	
+	public static ArrayList<String> swapPairs(ArrayList<String> Strings){
+		
+	}
 	
 	
 	
@@ -102,8 +112,7 @@ public class ArrayListPracticeLab
 		String[] test_max_1 = {"to", "be", "or", "not", "to", "be", "hamlet"};  
 		String[] test_max_2 = {"Only one really long string"};
 		String[] test_max_3 = {};
-		
-		//printMe( maxLength( convertArrayToList(test_max_1) ) );
+		System.out.println(( maxLength( convertArrayToList(test_max_3) ) ));
 		
 		
 		
