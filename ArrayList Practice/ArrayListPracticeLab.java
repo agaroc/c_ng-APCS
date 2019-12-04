@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ArrayListPracticeLab 
 {
@@ -60,12 +61,14 @@ public class ArrayListPracticeLab
 	 *  The returned list should contain {"be", "to", "not", "or", "be", "to", "hamlet"}
 	 */
 	public static ArrayList<String> swapPairs(ArrayList<String> Strings){
-		
+		ArrayList <String> newList = Strings;
+		for(int i = 0; i <= newList.size() - 2; i += 2) {
+		       String str = newList.get(i + 1);
+		       newList.set(i + 1, newList.get(i));
+		       newList.set(i, str);
+		}
+		return newList;
 	}
-	
-	
-	
-	
 	/*
 	 * removeEvenLength
 	 * 
@@ -75,11 +78,15 @@ public class ArrayListPracticeLab
 	 * any Strings of even length.
 	 * removeEvenLength should not change the input ArrayList.
 	 */
-	
-	
-	
-	
-	
+	public static ArrayList<String> removeEvenLength(ArrayList<String> Strings){
+		ArrayList <String> newList = new ArrayList <String>();
+		for(String word: Strings) {
+			if(word.length() % 2 != 0) {
+				newList.add(word);
+			}
+		}
+		return newList;
+	}	
 	/*
 	 * doubleList
 	 * 
@@ -90,33 +97,28 @@ public class ArrayListPracticeLab
 	 * is called, it should contain the values {"how", "how", "are", "are", "you?", "you?"} 
 	 * after the method finishes executing.
 	 */
-	
-	
-	
-	
-	
+	public static void doubleList(ArrayList<String> Strings) {
+		ArrayList<String> newList = new ArrayList<String>();
+		for(String word : Strings) {
+			newList.add(word);
+			newList.add(word);
+		}
+		printMe(newList);
+	}	
 	public static void main(String[] args) 
 	{
 		// Declare an ArrayList of String named myList.  Then fill it with: "this", "is", "it".  Print myList using printMe().
-		
-		
-		
-		
-		
-		
-		
-
+		ArrayList<String> myList = new ArrayList<String>(Arrays.asList("this", "is", "it"));
+		printMe(myList);
 		// To test your maxLength method, convert the following to ArrayLists of Strings and 
 		// pass them into your maxLength method.  (You'll want to complete the convertArrayToList method first.)
 		// Expected output:  6, 27, 0
 		String[] test_max_1 = {"to", "be", "or", "not", "to", "be", "hamlet"};  
 		String[] test_max_2 = {"Only one really long string"};
 		String[] test_max_3 = {};
-		System.out.println(( maxLength( convertArrayToList(test_max_3) ) ));
-		
-		
-		
-		
+		System.out.println(( maxLength( convertArrayToList(test_max_1))));
+		System.out.println(( maxLength( convertArrayToList(test_max_2))));
+		System.out.println(( maxLength( convertArrayToList(test_max_3))));
 		// To test your swapPairs method, convert the following to ArrayLists of Strings and 
 		// pass them into your swapPairs method.  
 		// Expected output:  
@@ -128,10 +130,10 @@ public class ArrayListPracticeLab
 		String[] test_swap_2 = {"I", "love", "programming!"};
 		String[] test_swap_3 = {"don't move me"};
 		String[] test_swap_4 = {};
-
-		
-		
-
+		System.out.println(swapPairs(convertArrayToList(test_swap_1)));
+		System.out.println(swapPairs(convertArrayToList(test_swap_2)));
+		System.out.println(swapPairs(convertArrayToList(test_swap_3)));
+		System.out.println(swapPairs(convertArrayToList(test_swap_4)));
 		// To test your removeEvenLength method, convert the following to ArrayLists of Strings and 
 		// pass them into your removeEvenLength method.  
 		// Expected output:  
@@ -141,10 +143,9 @@ public class ArrayListPracticeLab
 		String[] test_rem_1 = {"This", "is", "a", "test"};
 		String[] test_rem_2 = {"Did", "you", "solve", "it", "or", "what?"};
 		String[] test_rem_3 = {};
-				
-		
-		
-		
+		System.out.println(removeEvenLength(convertArrayToList(test_rem_1)));
+		System.out.println(removeEvenLength(convertArrayToList(test_rem_2)));
+		System.out.println(removeEvenLength(convertArrayToList(test_rem_3)));
 		// To test your doubleList method, convert the following to ArrayLists of Strings and 
 		// pass them into your doubleList method.  
 		// Expected output:  
@@ -154,7 +155,9 @@ public class ArrayListPracticeLab
 		String[] test_doub_1 = {"how", "are", "you?"};
 		String[] test_doub_2 = {"One string only"};		
 		String[] test_doub_3 = {};		
-		
+		doubleList(convertArrayToList(test_doub_1));
+		doubleList(convertArrayToList(test_doub_2));
+		doubleList(convertArrayToList(test_doub_3));
 	}
 		
 		
