@@ -106,7 +106,7 @@ public class ArrayListPracticeLab
 		printMe(newList);
 	}	
 	public static void main(String[] args) 
-	{
+	{ 
 		// Declare an ArrayList of String named myList.  Then fill it with: "this", "is", "it".  Print myList using printMe().
 		ArrayList<String> myList = new ArrayList<String>(Arrays.asList("this", "is", "it"));
 		printMe(myList);
