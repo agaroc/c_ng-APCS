@@ -1,7 +1,12 @@
+/*Caleb Ng
+ * 12/17/19
+ * Frac Calc: Does calculations on fractions
+ *  */
 package fracCalc;
 import java.util.*;
 public class FracCalc {
-
+	
+	// Client Code that constantly ask user to input a fraction unless they type quit
     public static void main(String[] args) {
     	Scanner userInput = new Scanner(System.in);
     	String stop = "";
@@ -14,6 +19,8 @@ public class FracCalc {
     	}while(!stop.equals("quit"));	
     	userInput.close();
     }
+    //Asks for a string and returns a String
+    //Code that creates the answer for the user's computation 
     public static String produceAnswer(String input){
     	String result = "";
     	String[] splitOpperands = input.split(" ");
@@ -42,6 +49,8 @@ public class FracCalc {
     	}
     	return result;
     }
+    //Accepts a string of arrays and an integers returns an array integer
+    //Splits the fraction into an array of integers
     public static int[] produceSplit(String[]arr, int length) {
     	String frac[] = {};
     	int result[] = {0, 0, 1};
@@ -59,6 +68,8 @@ public class FracCalc {
 	    }
     	return result;
     }
+    //Turns fraction into an improperfrac 
+    // Asks for three ints returns an array of int list
     public static int [] toImproperFrac(int whole, int numerator, int denominator) {
 		int newNumerator = 0;
 		if(whole<0) {
@@ -69,6 +80,8 @@ public class FracCalc {
 		int [] splitFrac = {newNumerator, denominator};
 		return splitFrac;
 	}
+    //Accetps two array of integer and a string
+    //Does subtraction or addition on the fractions
     public static String arithmetic(int [] arr1, int [] arr2, String operation) {
     	int commonDenom = arr2[1] * arr1[1];
     	int [] fracArr = {0,commonDenom};
@@ -87,6 +100,8 @@ public class FracCalc {
     	}
     	return newFrac;
     }
+    //Accetps two array of integer and a string
+    //Does multiplication and divisions on the fractions
     public static String multiplyOrDivide(int[] arr1, int[] arr2, String operation) {
     	int [] fracArr = {0,0};
     	if(operation.equals("*")) {
@@ -110,6 +125,8 @@ public class FracCalc {
     	}
     	return newFrac;
     }
+    //Accepts an array of integers returns an integer
+    // Find commoan factor betwene numbers
     public static int gcf(int [] arr) {
 		int largestFactor = 0;
 		if(Math.abs(arr[0]) == 0) {
@@ -128,6 +145,8 @@ public class FracCalc {
 		}
 		return largestFactor;
 	}
+    //Accepts two integers and returns a boolean
+    //Find out of two numbers are divisible 
     public static boolean isDivisibleBy(int number1, int number2) {
 		if(number2 ==0) {
 			throw new IllegalArgumentException("Can't divide by 0");
@@ -139,6 +158,8 @@ public class FracCalc {
 			}
 		}
 	}
+    //Accepts two integers and returns an integer
+    //Find the min of the two numbers
     public static int min(int number1, int number2) {
 		if(number1 <= number2) {
 			return number1;
@@ -146,6 +167,8 @@ public class FracCalc {
 			return number2;
 		}
 	}
+    //Accepts two integers and returns a string
+    //Creates a mixed fraction from improper fraction
     public static String toMixedNum(int numerator, int denominator) {
 		int whole_number = numerator/ denominator;
 		int newNumerator = 0;
@@ -158,6 +181,8 @@ public class FracCalc {
 		}
 		return (whole_number + "_" + newNumerator + "/" + Math.abs(denominator));
 	}
+    //Accepts an integer and an array of integers and returns a string
+    //Checks error of a fraction to simplify and avoid other errors 
     public static String checkErrors(int simplifyValue, int []arr) {
     	String newFrac = "";
     	if(simplifyValue != 0) {
