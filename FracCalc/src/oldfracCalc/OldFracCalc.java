@@ -2,10 +2,9 @@
  * 12/17/19
  * Frac Calc: Does calculations on fractions
  *  */
-package fracCalc;
+package oldfracCalc;
 import java.util.*;
-public class FracCalc {
-	
+public class OldFracCalc {
 	// Client Code that constantly ask user to input a fraction unless they type quit
     public static void main(String[] args) {
     	Scanner userInput = new Scanner(System.in);
