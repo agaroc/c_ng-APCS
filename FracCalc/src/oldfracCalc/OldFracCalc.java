@@ -50,35 +50,7 @@ public class OldFracCalc {
     }
     //Accepts a string of arrays and an integers returns an array integer
     //Splits the fraction into an array of integers
-    public static int[] produceSplit(String[]arr, int length) {
-    	String frac[] = {};
-    	int result[] = {0, 0, 1};
-    	if(arr.length == 2) {
-	    	result[0] = Integer.parseInt(arr[0]);
-	    	frac = arr[1].split("/");
-	    	result[1] = Integer.parseInt(frac[0]);
-	    	result[2] = Integer.parseInt(frac[1]);
-	    }else if(length == 2){
-	    	frac = arr[0].split("/");
-	    	result[2] = Integer.parseInt(frac[1]);
-	    	result[1] = Integer.parseInt(frac[0]);
-	    }else {
-	    	result[0] = Integer.parseInt(arr[0]);
-	    }
-    	return result;
-    }
-    //Turns fraction into an improperfrac 
-    // Asks for three ints returns an array of int list
-    public static int [] toImproperFrac(int whole, int numerator, int denominator) {
-		int newNumerator = 0;
-		if(whole<0) {
-			newNumerator = whole* denominator- numerator;
-		}else {
-			newNumerator = whole * denominator + numerator;
-		}
-		int [] splitFrac = {newNumerator, denominator};
-		return splitFrac;
-	}
+    
     //Accetps two array of integer and a string
     //Does subtraction or addition on the fractions
     public static String arithmetic(int [] arr1, int [] arr2, String operation) {
