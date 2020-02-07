@@ -71,7 +71,9 @@ public class ThereAndBackAgain
 			System.out.println(name.getName() +" has traveled " + name.getDistanceTraveled()+ " miles.");
 		}
 	}
-
+	/* Aceepts an arraylist of travelers and an arraylist of strings
+	 * adds the strings to the arraylist of travlers
+	 */
 	private static void createParty(ArrayList<Traveler> party2, String[] dwarfNames) {
 		ArrayList <Traveler> hobbitList = new ArrayList <Traveler>();
 		for(String name: dwarfNames) {

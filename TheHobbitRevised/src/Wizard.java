@@ -11,19 +11,18 @@ public class Wizard extends Traveler
 	//  Override the Traveler's getName method to append the Wizard's color 
 	
 	private String color;
-	
 	public Wizard(String name, String color)
 	{
 		super(name);
 		this.color = color;
 	}
-	
+	// Travels the integer amoumnt of miles times 3
 	public void travel(int miles)
 	{
 		super.travel(miles*3);
 	}
-	
+	// Adds the color to the end of the wizard's name
 	public String getName() {
-		return super.getName() + " the Grey";	
+		return super.getName() +(" the ")+ this.color;	
 	}
 }
