@@ -1,8 +1,14 @@
+/*Caleb Ng
+ * 1/10/19
+ * Frac Calc but using object orientation  
+ */
 package fracCalc;
-import java.util.*;
+
+import java.util.Scanner;
+
 public class FracCalc {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
     	Scanner userInput = new Scanner(System.in);
     	String stop = "";
     	do {
@@ -14,7 +20,10 @@ public class FracCalc {
     	}while(!stop.equals("quit"));	
     	userInput.close();
     }
-    public static String produceAnswer(String input){
+    
+    //Asks for a string and returns a String
+    //Code that creates the answer for the user's computation 
+    public static String produceAnswer(String input){ 
     	String result = "";
     	String[] splitOpperands = input.split(" ");
     	String opperand1 = splitOpperands[0];
@@ -59,57 +68,6 @@ public class FracCalc {
 	    }
     	return result;
     }
-    public static int [] toImproperFrac(int whole, int numerator, int denominator) {
-		int newNumerator = 0;
-		if(whole<0) {
-			newNumerator = whole* denominator- numerator;
-		}else {
-			newNumerator = whole * denominator + numerator;
-		}
-		int [] splitFrac = {newNumerator, denominator};
-		return splitFrac;
-	}
-    public static String arithmetic(int [] arr1, int [] arr2, String operation) {
-    	int commonDenom = arr2[1] * arr1[1];
-    	int [] fracArr = {0,commonDenom};
-    	if(operation.equals("+")) {
-    		fracArr[0] = (arr1[0]*arr2[1]) + (arr2[0]*arr1[1]);
-    	}else{
-    		fracArr[0] = (arr1[0]*arr2[1])-(arr1[1]*arr2[0]);
-    	}
-    	int simplifyValue = gcf(fracArr);
-    	String newFrac = checkErrors(simplifyValue, fracArr);
-    	if(fracArr[0] == 0) {
-    		newFrac = "0";
-    	}else if(fracArr[0] == commonDenom) {
-    		String [] tempArr = newFrac.split("/");
-    		newFrac = tempArr[0];
-    	}
-    	return newFrac;
-    }
-    public static String multiplyOrDivide(int[] arr1, int[] arr2, String operation) {
-    	int [] fracArr = {0,0};
-    	if(operation.equals("*")) {
-    		fracArr[0] = arr1[0]* arr2[0];
-    		fracArr[1] = arr1[1]* arr2[1];
-
-    	}else {
-    		fracArr[0] = (arr1[0] * arr2[1]);
-    		fracArr[1] = (arr1[1] * arr2[0]);
-    		
-    	}
-    	int simplifyValue = gcf(fracArr);
-    	if(fracArr[1] < 0) {
-    		fracArr[1] *= -1;
-    		fracArr[0] *= -1;
-    	}
-    	String newFrac = checkErrors(simplifyValue, fracArr);
-    	if(fracArr[0] == fracArr[1]) {
-    		String [] tempArr = newFrac.split("/");
-    		newFrac = tempArr[0];
-    	}
-    	return newFrac;
-    }
     public static int gcf(int [] arr) {
 		int largestFactor = 0;
 		if(Math.abs(arr[0]) == 0) {
@@ -128,6 +86,13 @@ public class FracCalc {
 		}
 		return largestFactor;
 	}
+    public static int min(int number1, int number2) {
+		if(number1 <= number2) {
+			return number1;
+		}else {
+			return number2;
+		}
+	}
     public static boolean isDivisibleBy(int number1, int number2) {
 		if(number2 ==0) {
 			throw new IllegalArgumentException("Can't divide by 0");
@@ -139,41 +104,4 @@ public class FracCalc {
 			}
 		}
 	}
-    public static int min(int number1, int number2) {
-		if(number1 <= number2) {
-			return number1;
-		}else {
-			return number2;
-		}
-	}
-    public static String toMixedNum(int numerator, int denominator) {
-		int whole_number = numerator/ denominator;
-		int newNumerator = 0;
-		if(whole_number <0 ) {
-			newNumerator = Math.abs(numerator%denominator);
-		}else if(whole_number > 0){
-			newNumerator = Math.abs(numerator%denominator);
-		}else {
-		    newNumerator = numerator%denominator;
-		}
-		return (whole_number + "_" + newNumerator + "/" + Math.abs(denominator));
-	}
-    public static String checkErrors(int simplifyValue, int []arr) {
-    	String newFrac = "";
-    	if(simplifyValue != 0) {
-    		newFrac = (arr[0]/simplifyValue+"/"+arr[1]/simplifyValue);
-		}else {
-			newFrac = (arr[0]+"/"+arr[1]);
-		}
-    	if(Math.abs(arr[0])> Math.abs(arr[1])) {
-    		String fracArr[] = newFrac.split("/");
-    		newFrac = toMixedNum(Integer.parseInt(fracArr[0]), Integer.parseInt(fracArr[1]));
-    		String mixedArr[] = newFrac.split("_");
-    		String fracArr2[] = mixedArr[1].split("/");
-    		if(Integer.parseInt(fracArr2[0]) == 0){
-    			newFrac = mixedArr[0];
-    		}
-    	}
-    	return newFrac;
-    }
 }
